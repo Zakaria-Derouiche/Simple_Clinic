@@ -1,0 +1,6 @@
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\bin\Debug\ClinicDataAccess.dll
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\bin\Debug\ClinicDataAccess.pdb
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\obj\Debug\ClinicDataAccess.csproj.AssemblyReference.cache
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\obj\Debug\ClinicDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\obj\Debug\ClinicDataAccess.dll
+C:\Users\THINK15-G4\source\repos\ClinicDataAccess\obj\Debug\ClinicDataAccess.pdb
