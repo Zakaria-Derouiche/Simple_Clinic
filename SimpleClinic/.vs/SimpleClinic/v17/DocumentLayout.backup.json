@@ -1,24 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\",
+  "WorkspaceRootPath": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|c:\\users\\think15-g4\\source\\repos\\simpleclinic\\frmaddeditemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmaddeditemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|c:\\users\\think15-g4\\source\\repos\\simpleclinicproject\\simpleclinic\\frmuserpermissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmuserpermissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\THINK15-G4\\Desktop\\DVLD Solution\\DVLD\\Global Classes\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmuserpermissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmuserpermissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\frmaddeditemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmaddeditemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\ctrlemployeewithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:ctrlemployeewithfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3822D4DE-651A-4BED-A976-BD0CBF0A7162}|..\\ClinicBusiness\\ClinicBusiness.csproj|c:\\users\\think15-g4\\source\\repos\\clinicbusiness\\clsemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|c:\\users\\think15-g4\\source\\repos\\simpleclinic\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C84924D8-4445-484B-A878-64697B0EAECD}|SimpleClinic.csproj|solutionrelative:frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,65 +39,61 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "util.cs",
-              "DocumentMoniker": "C:\\Users\\THINK15-G4\\Desktop\\DVLD Solution\\DVLD\\Global Classes\\util.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\Desktop\\DVLD Solution\\DVLD\\Global Classes\\util.cs",
-              "ToolTip": "C:\\Users\\THINK15-G4\\Desktop\\DVLD Solution\\DVLD\\Global Classes\\util.cs",
-              "RelativeToolTip": "..\\..\\..\\Desktop\\DVLD Solution\\DVLD\\Global Classes\\util.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "frmUserPermissions.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmUserPermissions.cs",
+              "RelativeDocumentMoniker": "frmUserPermissions.cs",
+              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmUserPermissions.cs [Design]",
+              "RelativeToolTip": "frmUserPermissions.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T07:16:13.848Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "clsEmployee.cs",
-              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\ClinicBusiness\\clsEmployee.cs",
-              "RelativeDocumentMoniker": "..\\ClinicBusiness\\clsEmployee.cs",
-              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\ClinicBusiness\\clsEmployee.cs",
-              "RelativeToolTip": "..\\ClinicBusiness\\clsEmployee.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAUwCUAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T20:13:51.745Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmAddEditEmployee.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\frmAddEditEmployee.cs",
-              "RelativeDocumentMoniker": "frmAddEditEmployee.cs",
-              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\frmAddEditEmployee.cs [Design]",
-              "RelativeToolTip": "frmAddEditEmployee.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T17:44:36.141Z",
+              "WhenOpened": "2024-12-27T13:58:06.295Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmAddEditEmployee.cs",
-              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\frmAddEditEmployee.cs",
-              "RelativeDocumentMoniker": "frmAddEditEmployee.cs",
-              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\frmAddEditEmployee.cs",
-              "RelativeToolTip": "frmAddEditEmployee.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAEwB8AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "frmAddEditUser.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmAddEditUser.cs",
+              "RelativeDocumentMoniker": "frmAddEditUser.cs",
+              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmAddEditUser.cs [Design]",
+              "RelativeToolTip": "frmAddEditUser.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T17:44:38.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-27T10:19:02.74Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinic\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "frmAddEditUser.cs",
+              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmAddEditUser.cs",
+              "RelativeDocumentMoniker": "frmAddEditUser.cs",
+              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmAddEditUser.cs",
+              "RelativeToolTip": "frmAddEditUser.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAcwFQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T06:32:21.576Z",
+              "WhenOpened": "2024-12-28T09:03:04.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ctrlEmployeeWithFilter.cs",
+              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\ctrlEmployeeWithFilter.cs",
+              "RelativeDocumentMoniker": "ctrlEmployeeWithFilter.cs",
+              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\ctrlEmployeeWithFilter.cs",
+              "RelativeToolTip": "ctrlEmployeeWithFilter.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T09:53:34.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmUserPermissions.cs",
+              "DocumentMoniker": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmUserPermissions.cs",
+              "RelativeDocumentMoniker": "frmUserPermissions.cs",
+              "ToolTip": "C:\\Users\\THINK15-G4\\source\\repos\\SimpleClinicProject\\SimpleClinic\\frmUserPermissions.cs",
+              "RelativeToolTip": "frmUserPermissions.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAA7wEMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T08:19:25.706Z",
               "EditorCaption": ""
             }
           ]

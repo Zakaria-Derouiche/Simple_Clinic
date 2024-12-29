@@ -13,63 +13,79 @@ namespace SimpleClinic
 {
     public partial class frmAddEditPerson : Form
     {
-        private int _PersonID = -1;
+
+       
+
         private string _NationalNumber = string.Empty;
+
         private clsPerson _Person = new clsPerson();
+
         private Dictionary<string, string> dicCountries = new Dictionary<string, string>();
-        private string ErrorMessage = string.Empty;
+
         private enum enMode { Add, Edit}
+
         private enMode _Mode;
         public frmAddEditPerson(int PersonID = -1)
         {
             InitializeComponent();
-            _PersonID = PersonID;
+
             dicCountries = clsCountry.GetAllCountries();
+
+            _Person = clsPerson.GetPersonInfoByID(PersonID, ref clsGlobal.ErrorMessage);
+
+            _Mode = _Person == null || _Person.ID < 1 ? enMode.Add : enMode.Edit; 
         }
         public frmAddEditPerson(string NationalNumber = "")
         {
             InitializeComponent();
-            _NationalNumber = NationalNumber;
+
             dicCountries = clsCountry.GetAllCountries();
+
+            _Person = clsPerson.GetPersonInfoByNationalNumber(NationalNumber, ref clsGlobal.ErrorMessage);
+
+            _Mode = _Person == null || _Person.ID < 1 ? enMode.Add : enMode.Edit;
         }
-        private void frmAddEditPatient_Load(object sender, EventArgs e)
+        private void frmAddEditPerson_Load(object sender, EventArgs e)
         {
-            _Person = _PersonID != -1 ? clsPerson.GetPersonInfoByID(_PersonID, ref ErrorMessage) :
-                _NationalNumber != string.Empty ? 
-                clsPerson.GetPersonInfoByNationalNumber(clsEncryptionDecryption.Encrypt(_NationalNumber), ref ErrorMessage) :
-                new clsPerson();
-            _Mode = _Person == null || _Person.ID == -1? enMode.Add : enMode.Edit;
-            _LoadFormInfo();
-            
+            _LoadPersonInfo();
         }
-        private bool _IsPersonInfoChanged()
+       
+        private void _LoadPersonInfo()
         {
-            return !(txtBoxNationalNumber.Text == _Person.NationalNumber && txtBoxFirstName.Text == _Person.FirstName &&
-                txtBoxMidlleName.Text == _Person    .MidlleName && txtBoxLastName.Text == _Person.LastName &&
-                dtpDateOfBirth.Value == _Person.BirthDate && rbMale.Checked == _Person.Gender &&
-                txtBoxPhone.Text.Split(' ')[1] == _Person.Phone && txtBoxEmail.Text == _Person.Email &&
-                txtBoxAddress.Text == _Person.Address && comBoxNationality.SelectedIndex + 1 == _Person.CountryID);
-             
-        }
-        private void _LoadFormInfo()
-        {
-            dtpDateOfBirth.MaxDate = DateTime.Now;
             lblTitle.Text = _Person == null || _Person.ID == -1 ? "Add New Patient" : "Edit Patient Data";
-            lblPatientID.Text = _Person == null || _Person.ID == -1 ? "" : _Person.ID.ToString();
-            txtBoxNationalNumber.Text = _Person == null || _Person.ID == -1 ? "" : _Person.NationalNumber;
-            txtBoxFirstName.Text = _Person == null || _Person.ID == -1 ? "" : _Person.FirstName;
-            txtBoxMidlleName.Text = _Person == null || _Person.ID == -1 ? "" : _Person.MidlleName;
-            txtBoxLastName.Text = _Person == null || _Person.ID == -1 ? "" : _Person.LastName;
-            dtpDateOfBirth.Text = _Person == null || _Person.ID == -1 ? "" : _Person.BirthDate.ToShortDateString();
-            rbMale.Checked = _Person == null || _Person.ID == -1? true : _Person.Gender;
-            rbFemale.Checked = _Person == null || _Person.ID == -1? false : !_Person.Gender;
-            txtBoxEmail.Text = _Person == null || _Person.ID == -1 ? "" : _Person.Email;
-            txtBoxPhone.Text = _Person  == null || _Person.ID == -1 ? "+" + dicCountries.ElementAt(2).Value.Trim() + " " :
-                "+" + dicCountries.ElementAt(_Person.CountryID - 1).Value.Trim() + " " +  _Person.Phone;
+
+            lblTitle.Location = new Point((this.Size.Width /2) - (lblTitle.Size.Width / 2), 21);
+
             comBoxNationality.Items.AddRange(dicCountries.Keys.ToArray());
+
+            dtpDateOfBirth.MaxDate = DateTime.Now;
+
+            lblPersonID.Text = _Mode == enMode.Add ? "" : _Person.ID.ToString();
+
+            txtBoxNationalNumber.Text = _Mode == enMode.Add ? "" : _Person.NationalNumber;
+
+            txtBoxFirstName.Text = _Mode == enMode.Add ? "" : _Person.FirstName;
+
+            txtBoxMidlleName.Text = _Mode == enMode.Add  ? "" : _Person.MidlleName;
+
+            txtBoxLastName.Text = _Mode == enMode.Add ? "" : _Person.LastName;
+
+            dtpDateOfBirth.Text = _Mode == enMode.Add ? "" : _Person.BirthDate.ToShortDateString();
+
+            rbMale.Checked = _Mode == enMode.Add ? true : _Person.Gender;
+
+            rbFemale.Checked = _Mode == enMode.Add ? false : !_Person.Gender;
+
+            txtBoxEmail.Text = _Mode == enMode.Add ? "" : _Person.Email;
+
+            txtBoxPhone.Text = _Mode == enMode.Add ? "+" + dicCountries.ElementAt(2).Value.Trim() + " " :
+                "+" + dicCountries.ElementAt(_Person.CountryID - 1).Value.Trim() + " " +  _Person.Phone;    
+
             comBoxNationality.SelectedIndex = _Person == null || _Person.ID == -1 ? 2 : _Person.CountryID - 1;
+
             txtBoxAddress.Text = _Person == null || _Person.ID == -1 ? "" : _Person.Address;
         }
+       
         private void TextBoxKey_Press(object sender, KeyPressEventArgs e)
         {
             sender = (TextBox)sender;
@@ -82,7 +98,7 @@ namespace SimpleClinic
         private void txtBoxNationalNumnber_Validating(object sender, CancelEventArgs e)
         {
             if (_Mode == enMode.Add && 
-                clsPerson.IsPersonExist(clsEncryptionDecryption.Encrypt(txtBoxNationalNumber.Text), ref ErrorMessage)) 
+                clsPerson.IsPersonExist(clsEncryptionDecryption.Encrypt(txtBoxNationalNumber.Text), ref clsGlobal.ErrorMessage)) 
             {
                 errorProvider1.SetError(txtBoxNationalNumber, "This National No Is Linked With Another Person");
                 e.Cancel = true;
@@ -110,7 +126,10 @@ namespace SimpleClinic
         }
         private void comBoxNationality_SelectedIndexChanged(object sender, EventArgs e)
         {
-           txtBoxPhone.Text = "+" + dicCountries.ElementAt(comBoxNationality.SelectedIndex).Value.Trim() + " " + _Person.Phone;
+            
+           txtBoxPhone.Text = _Mode == enMode.Add ? "+" + dicCountries.ElementAt(comBoxNationality.SelectedIndex).Value.Trim() + " ":
+                "+" + dicCountries.ElementAt(comBoxNationality.SelectedIndex).Value.Trim() + " " + _Person.Phone;
+            
         }
         private void txtBoxPhone_Validating(object sender, CancelEventArgs e)
         {
@@ -145,18 +164,16 @@ namespace SimpleClinic
                    !string.IsNullOrEmpty(txtBoxPhone.Text.Split(' ')[1]) && !string.IsNullOrEmpty(txtBoxEmail.Text) &&
                    !string.IsNullOrEmpty(txtBoxAddress.Text) && !string.IsNullOrEmpty(txtBoxNationalNumber.Text);
         }
-        private void _FillPersonData()
+        private bool _IsPersonInfoChanged()
         {
-            _Person.NationalNumber = clsEncryptionDecryption.Encrypt(txtBoxNationalNumber.Text);
-            _Person.FirstName = clsEncryptionDecryption.Encrypt(txtBoxFirstName.Text);
-            _Person.MidlleName = clsEncryptionDecryption.Encrypt(txtBoxMidlleName.Text);
-            _Person.LastName = clsEncryptionDecryption.Encrypt(txtBoxLastName.Text);
-            _Person.Gender = rbMale.Checked;
-            _Person.BirthDate = dtpDateOfBirth.Value;
-            _Person.Phone = clsEncryptionDecryption.Encrypt(txtBoxPhone.Text.Split(' ')[1]);
-            _Person.Email = clsEncryptionDecryption.Encrypt(txtBoxEmail.Text);
-            _Person.Address = clsEncryptionDecryption.Encrypt(txtBoxAddress.Text);
-            _Person.CountryID = Convert.ToByte(comBoxNationality.SelectedIndex + 1);
+
+            return _Mode == enMode.Add || !(txtBoxNationalNumber.Text == _Person.NationalNumber &&
+                txtBoxFirstName.Text == _Person.FirstName && txtBoxMidlleName.Text == _Person.MidlleName &&
+                txtBoxLastName.Text == _Person.LastName && dtpDateOfBirth.Value == _Person.BirthDate
+                && rbMale.Checked == _Person.Gender && txtBoxPhone.Text.Split(' ')[1] == _Person.Phone
+                && txtBoxEmail.Text == _Person.Email && txtBoxAddress.Text == _Person.Address
+                && comBoxNationality.SelectedIndex + 1 == _Person.CountryID);
+
         }
         private bool _CheckInputValidation()
         {
@@ -165,25 +182,75 @@ namespace SimpleClinic
                 MessageBox.Show("Empty Fields Are Not Allowed Unless Middle Name", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return IsValid;
         }
+        private void _FillPersonData()
+        {
+            
+            _Person.NationalNumber = clsEncryptionDecryption.Encrypt(txtBoxNationalNumber.Text);
+
+            _Person.FirstName = clsEncryptionDecryption.Encrypt(txtBoxFirstName.Text);
+
+            _Person.MidlleName = clsEncryptionDecryption.Encrypt(txtBoxMidlleName.Text);
+
+            _Person.LastName = clsEncryptionDecryption.Encrypt(txtBoxLastName.Text);
+
+            _Person.Gender = rbMale.Checked;
+
+            _Person.BirthDate = dtpDateOfBirth.Value;
+
+            _Person.Phone = clsEncryptionDecryption.Encrypt(txtBoxPhone.Text.Split(' ')[1]);
+
+            _Person.Email = clsEncryptionDecryption.Encrypt(txtBoxEmail.Text);
+
+            _Person.Address = clsEncryptionDecryption.Encrypt(txtBoxAddress.Text);
+
+            _Person.CountryID = Convert.ToByte(comBoxNationality.SelectedIndex + 1);
+        }
+        private void _AddNewPerson()
+        {
+            _Person = new clsPerson();
+            _FillPersonData();
+
+            bool IsSaved = _Person.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
+
+            lblPersonID.Text = IsSaved ? "N/A" : _Person.ID.ToString();
+
+            _Mode = IsSaved ? enMode.Edit : enMode.Add;
+
+            string Message = IsSaved ? "Successfull Save Operation" : clsGlobal.ErrorMessage;
+
+            MessageBox.Show(Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+        private void _UpdatePersonInfo()
+        {
+            
+            _FillPersonData();
+
+            bool IsSaved = _Person.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
+
+            string Message = IsSaved ? "Successfull Save Operation" : clsGlobal.ErrorMessage;
+
+            MessageBox.Show(Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }     
         private void _Save()
         {
-            _FillPersonData();
-            bool IsSaved = _Person.Save(clsGlobal.CurrentUser.UserID,ref ErrorMessage);
-            lblPatientID.Text = IsSaved? "N/A" : _Person.ID.ToString();
-            _Mode = IsSaved? enMode.Edit : enMode.Add;
-            string Message = IsSaved ? "Successfull Save Operation" : ErrorMessage;
-            MessageBox.Show(Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if(IsSaved)
-                this.Close();
+
+            if(_Mode == enMode.Add)
+            {
+                _AddNewPerson();
+            }
+            else
+            { 
+                _UpdatePersonInfo();
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(!this.ValidateChildren())           
+           
+            if(!this.ValidateChildren()||!_CheckInputValidation() ||!_IsPersonInfoChanged())
+
                 return;
-            if (!_CheckInputValidation())
-                return;
-            if (!_IsPersonInfoChanged())
-                return;
+
             _Save();
         }   
         private void btnClose_Click(object sender, EventArgs e)

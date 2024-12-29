@@ -20,3 +20,51 @@ C:\Users\THINK15-G4\source\repos\SimpleClinic\obj\Debug\SimpleClinic.frmMenu.res
 C:\Users\THINK15-G4\source\repos\SimpleClinic\obj\Debug\SimpleClinic.ctrlPersonWithFilter.resources
 C:\Users\THINK15-G4\source\repos\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditEmployee.resources
 C:\Users\THINK15-G4\source\repos\SimpleClinic\obj\Debug\SimpleClinic.ctrlEmployeeInfo.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\SimpleClinic.exe.config
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\SimpleClinic.exe
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\SimpleClinic.pdb
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\ClinicBusiness.dll
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\ClinicDataAccess.dll
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\ClinicBusiness.pdb
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\bin\Debug\ClinicDataAccess.pdb
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.csproj.AssemblyReference.cache
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditEmployee.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.ctrlEmployeeInfo.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.ctrlPersonInfo.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.ctrlPersonWithFilter.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditPerson.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.frmLogin.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.frmMenu.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.frmPatientsList.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.Properties.Resources.resources
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.csproj.GenerateResource.cache
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.csproj.CoreCompileInputs.cache
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleCl.7A72EF34.Up2Date
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.exe
+C:\Users\THINK15-G4\source\repos\Simple Clinic Project\SimpleClinic\obj\Debug\SimpleClinic.pdb
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\SimpleClinic.exe.config
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\SimpleClinic.exe
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\SimpleClinic.pdb
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\ClinicBusiness.dll
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\ClinicDataAccess.dll
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\ClinicBusiness.pdb
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\bin\Debug\ClinicDataAccess.pdb
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.csproj.AssemblyReference.cache
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditEmployee.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.ctrlEmployeeInfo.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.ctrlPersonInfo.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.ctrlPersonWithFilter.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditPerson.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmLogin.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmMenu.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmPatientsList.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.Properties.Resources.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.csproj.GenerateResource.cache
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.csproj.CoreCompileInputs.cache
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleCl.7A72EF34.Up2Date
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.exe
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.pdb
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.ctrlEmployeeWithFilter.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmAddEditUser.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmUserPermissions.resources
+C:\Users\THINK15-G4\source\repos\SimpleClinicProject\SimpleClinic\obj\Debug\SimpleClinic.frmPersonInfo.resources

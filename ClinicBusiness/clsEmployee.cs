@@ -28,6 +28,8 @@ namespace ClinicBusiness
             ReasonOfLeaving = string.Empty;
             _Mode = enMode.Add;
         }
+
+        
         public clsEmployee(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
             bool Gender, string Phone, string Email, string Address, byte CountryID, int EmployeeID, string ImagePath,
             DateTime HireDate, DateTime EndDate, bool TypeOfLeaving, string ReasonOfLeaving) :
@@ -41,6 +43,29 @@ namespace ClinicBusiness
             this.ReasonOfLeaving = ReasonOfLeaving;
             _Mode = enMode.Edit;
         }
+
+        public clsEmployee(clsPerson Person )
+        {
+            ID = Person.ID;
+            NationalNumber = Person.NationalNumber;
+            FirstName = Person.FirstName;
+            MidlleName = Person.MidlleName;
+            LastName = Person.LastName;
+            BirthDate = Person.BirthDate;
+            Gender = Person.Gender;
+            Phone = Person.Phone;
+            Email = Person.Email;
+            Address = Person.Address;
+            CountryID = Person.CountryID;
+            EmployeeID = -1;
+            ImagePath = string.Empty;
+            HireDate = DateTime.Now;
+            EndDate = null;
+            TypeOfLeaving = null;
+            ReasonOfLeaving = string.Empty;
+            _Mode = enMode.Add;
+
+        }
         public static clsEmployee GetEmployeeInfoByID(int EmployeeID, ref string ErrorMessage)
         {
             int personID = -1;
@@ -52,20 +77,27 @@ namespace ClinicBusiness
             if (clsEmployeeData.GetEmployeeInfo(EmployeeID, ref personID, ref  imagePath, ref hireDate, ref endDate,
                 ref typeOfLeaving, ref reasonOfLeaving, ref ErrorMessage))
             {
-                clsEmployee Employee = (clsEmployee)clsEmployee.GetPersonInfoByID(personID, ref ErrorMessage);
-                Employee.EmployeeID = EmployeeID;
-                Employee.ImagePath = imagePath;
-                Employee.HireDate = hireDate;
-                Employee.EndDate = endDate;
-                Employee.TypeOfLeaving = typeOfLeaving;
-                Employee.ReasonOfLeaving = reasonOfLeaving;
-                return Employee;
+                clsPerson Person = GetPersonInfoByID(personID, ref ErrorMessage);
+                if(Person != null)
+                {
+                    clsEmployee Employee = new clsEmployee(Person);
+                    Employee.EmployeeID = EmployeeID;
+                    Employee.ImagePath = imagePath;
+                    Employee.HireDate = hireDate;
+                    Employee.EndDate = endDate;
+                    Employee.TypeOfLeaving = typeOfLeaving;
+                    Employee.ReasonOfLeaving = reasonOfLeaving;
+                    return Employee;
+                }
+                return null;
+                
             }
             else
             {
                 return null;
             }
         }
+        
         public static clsEmployee GetEmployeeInfoByPersonID(int PersonID, ref string ErrorMessage)
         {
             int employeeID = -1;
@@ -77,13 +109,14 @@ namespace ClinicBusiness
             if (clsEmployeeData.GetEmployeeInfoByPersonID(PersonID, ref employeeID, ref imagePath, ref hireDate, ref endDate,
                 ref typeOfLeaving, ref reasonOfLeaving, ref ErrorMessage))
             {
-                clsEmployee Employee = (clsEmployee)clsEmployee.GetPersonInfoByID(PersonID, ref ErrorMessage);
+                clsEmployee Employee = new clsEmployee(clsPerson.GetPersonInfoByID(PersonID, ref ErrorMessage));
                 Employee.EmployeeID = employeeID;
                 Employee.ImagePath = imagePath;
                 Employee.HireDate = hireDate;
                 Employee.EndDate = endDate;
                 Employee.TypeOfLeaving = typeOfLeaving;
                 Employee.ReasonOfLeaving = reasonOfLeaving;
+                Employee._Mode = enMode.Edit;
                 return Employee;
             }
             else
@@ -91,7 +124,7 @@ namespace ClinicBusiness
                 return null;
             }
         }
-        public override bool Save(int UserID, ref string ErrorMessage)
+        public override bool Save( int UserID, ref string ErrorMessage)
         {
             bool IsSaved = false;
             switch (_Mode)

@@ -139,11 +139,72 @@ namespace ClinicDataAccess
                         Command.Parameters.Add(IsFoundOutputParameter);
                         
                         Connection.Open();
+
+                        Command.ExecuteNonQuery();
+
+                        IsFound = (bool)Command.Parameters["@IsFound"].Value;
+                        if (IsFound)
+                        {
+                            EmployeeID = (int)Command.Parameters["@EmployeeID"].Value;
+                            UserName = (string)Command.Parameters["@UserName"].Value;
+                            Password = (string)Command.Parameters["@Password"].Value;
+                            Permission = (string)Command.Parameters["@Permission"].Value;
+                        }
+                        Connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            return IsFound;
+        }
+
+        public static bool GetUserInfoByEmployeeID(int EmployeeID, ref int UserID, ref string UserName, ref string Password,
+            ref string Permission, ref string ErrorMessage)
+        {
+            bool IsFound = false;
+            try
+            {
+                using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
+                {
+                    using (SqlCommand Command = new SqlCommand("SP_GetUserInfoByEmployeeID", Connection))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
+                        SqlParameter UserIDOutputParameter = new SqlParameter("@ID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(UserIDOutputParameter);
+                        SqlParameter UserNameOutputParameter = new SqlParameter("@UserName", SqlDbType.NVarChar, 150)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(UserNameOutputParameter);
+                        SqlParameter PasswordOutputParameter = new SqlParameter("@Password", SqlDbType.NVarChar, 200)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(PasswordOutputParameter);
+                        SqlParameter PermissionOutputParameter = new SqlParameter("@Permission", SqlDbType.NVarChar, 1000)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(PermissionOutputParameter);
+                        SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsFoundOutputParameter);
+
+                        Connection.Open();
                         Command.ExecuteNonQuery();
                         IsFound = (bool)Command.Parameters["@IsFound"].Value;
                         if (IsFound)
                         {
-                            EmployeeID = (int)Command.Parameters["@PersonID"].Value;
+                            UserID = (int)Command.Parameters["@ID"].Value;
                             UserName = (string)Command.Parameters["@UserName"].Value;
                             Password = (string)Command.Parameters["@Password"].Value;
                             Permission = (string)Command.Parameters["@Permission"].Value;
@@ -202,7 +263,7 @@ namespace ClinicDataAccess
                         if (IsFound)
                         {
                             ID = (int)Command.Parameters["@ID"].Value;
-                            EmployeeID = (int)Command.Parameters["@PersonID"].Value;
+                            EmployeeID = (int)Command.Parameters["@EmployeeID"].Value;
                             Password = (string)Command.Parameters["@Password"].Value;
                             Permission = (string)Command.Parameters["@Permission"].Value;
                         }

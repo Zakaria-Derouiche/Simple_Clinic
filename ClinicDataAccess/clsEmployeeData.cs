@@ -129,7 +129,7 @@ namespace ClinicDataAccess
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(EndDateOutputParameter);
-                        SqlParameter TypeOfLeavingOutputParameter = new SqlParameter("@TypeOfLeavig", SqlDbType.Bit)
+                        SqlParameter TypeOfLeavingOutputParameter = new SqlParameter("@TypeOfLeaving", SqlDbType.Bit)
                         {
                             Direction = ParameterDirection.Output
                         };
@@ -153,9 +153,18 @@ namespace ClinicDataAccess
                             PersonID = (int)Command.Parameters["@PersonID"].Value;
                             ImagePath = (string)Command.Parameters["@ImagePath"].Value;
                             HireDate = (DateTime)Command.Parameters["@HireDate"].Value;
-                            EndDate = (DateTime)Command.Parameters["@EndDate"].Value;
-                            TypeOfLeaving = (bool)Command.Parameters["@TypeOfLeaving"].Value;
-                            ReasonOfLeaving = (string)Command.Parameters["@ReasonOfLeaving"].Value;
+                            if (Command.Parameters["@EndDate"].Value == System.DBNull.Value)
+                                EndDate = (null);
+                            else
+                                EndDate = (Nullable<DateTime>)Command.Parameters["@EndDate"].Value;
+                            if (Command.Parameters["@TypeOfLeaving"].Value == System.DBNull.Value)
+                                TypeOfLeaving = null;
+                            else
+                                TypeOfLeaving = (Nullable<bool>)Command.Parameters["@TypeOfLeaving"].Value;
+                            if (Command.Parameters["@ReasonOfLeaving"].Value == System.DBNull.Value)
+                                ReasonOfLeaving = string.Empty;
+                            else
+                                ReasonOfLeaving = (string)Command.Parameters["@ReasonOfLeaving"].Value;
                         }
                         Connection.Close();
                     }
@@ -163,7 +172,7 @@ namespace ClinicDataAccess
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
+                ErrorMessage = ex.StackTrace;
             }
             return IsFound;
         }
@@ -176,7 +185,7 @@ namespace ClinicDataAccess
             {
                 using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
                 {
-                    using (SqlCommand Command = new SqlCommand("SP_GetEmployeeInfo", Connection))
+                    using (SqlCommand Command = new SqlCommand("SP_GetEmployeeInfoByPersonID", Connection))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@PersonID", PersonID);
@@ -200,7 +209,7 @@ namespace ClinicDataAccess
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(EndDateOutputParameter);
-                        SqlParameter TypeOfLeavingOutputParameter = new SqlParameter("@TypeOfLeavig", SqlDbType.Bit)
+                        SqlParameter TypeOfLeavingOutputParameter = new SqlParameter("@TypeOfLeaving", SqlDbType.Bit)
                         {
                             Direction = ParameterDirection.Output
                         };
@@ -224,9 +233,18 @@ namespace ClinicDataAccess
                             ID = (int)Command.Parameters["@ID"].Value;
                             ImagePath = (string)Command.Parameters["@ImagePath"].Value;
                             HireDate = (DateTime)Command.Parameters["@HireDate"].Value;
-                            EndDate = (DateTime)Command.Parameters["@EndDate"].Value;
-                            TypeOfLeaving = (bool)Command.Parameters["@TypeOfLeaving"].Value;
-                            ReasonOfLeaving = (string)Command.Parameters["@ReasonOfLeaving"].Value;
+                            if (Command.Parameters["@EndDate"].Value == System.DBNull.Value)
+                                EndDate = null ;
+                            else
+                                EndDate = (DateTime)Command.Parameters["@EndDate"].Value;
+                            if (Command.Parameters["@TypeOfLeaving"].Value == System.DBNull.Value)
+                                TypeOfLeaving = null;
+                            else
+                                TypeOfLeaving = (bool)Command.Parameters["@TypeOfLeaving"].Value;
+                            if (Command.Parameters["@ReasonOfLeaving"].Value == System.DBNull.Value)
+                                ReasonOfLeaving = string.Empty;
+                            else                         
+                                ReasonOfLeaving = (string)Command.Parameters["@ReasonOfLeaving"].Value;
                         }
                         Connection.Close();
                     }
@@ -234,7 +252,7 @@ namespace ClinicDataAccess
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
+                ErrorMessage = ex.StackTrace;
             }
             return IsFound;
         }
@@ -278,7 +296,7 @@ namespace ClinicDataAccess
             {
                 using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
                 {
-                    using (SqlCommand Command = new SqlCommand("SP_UpdateUserInfo", Connection))
+                    using (SqlCommand Command = new SqlCommand("SP_UpdateEmployeeInfo", Connection))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@ID", ID);
@@ -286,6 +304,7 @@ namespace ClinicDataAccess
                         Command.Parameters.AddWithValue("@ImagePath", ImagePath);
                         Command.Parameters.AddWithValue("@HireDate", HireDate);
                         Command.Parameters.AddWithValue("@EndDate", EndDate);
+                        Command.Parameters.AddWithValue("@TypeOfLeaving", TypeOfLeaving);
                         Command.Parameters.AddWithValue("@ReasonOfLeaving", ReasonOfLeaving);
                         Command.Parameters.AddWithValue("@OperationUserID", UpdateUserID);
                         SqlParameter IsUpdatedParameter = new SqlParameter("@IsUpdated", SqlDbType.Bit)

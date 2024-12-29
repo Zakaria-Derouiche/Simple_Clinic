@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,10 @@ namespace SimpleClinic
     public partial class ctrlPersonWithFilter : UserControl
     {
 
-
-        public event EventHandler<bool> PersonSelected;
-        private void _Raise(object sender, bool IsFound)
+        public event EventHandler PersonSelected;
+        private void _Raise(object sender, EventArgs e)
         {
-            PersonSelected?.Invoke(this, IsFound);
+            PersonSelected?.Invoke(this, null);
         }
         private clsPerson _Person = new clsPerson();
         public clsPerson Person { get { return _Person; } }
@@ -28,10 +28,7 @@ namespace SimpleClinic
         {
             InitializeComponent();
         }
-        public void GetPersonInfoByID(int PersonID)
-        {
-            _Person = clsPerson.GetPersonInfoByID(PersonID, ref clsGlobal.ErrorMessage);
-        }
+       
         private void comBoxFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBoxFilterBy.Text = string.Empty;
@@ -57,6 +54,17 @@ namespace SimpleClinic
             else 
                 btnFind.Enabled = true;
         }
+        public void LoadPersonInfo(clsPerson Person)
+        {
+            _Person = Person;
+            if(_Person != null)
+            {
+                ctrlPersonInfo1.LoadPersonInfo(Person);
+                gBoxFilter.Enabled = false;
+            }
+                
+            
+        }
         private void _GetPerson()
         {
             if (comBoxFilterBy.SelectedIndex == 0)
@@ -71,7 +79,7 @@ namespace SimpleClinic
            _GetPerson();
             ctrlPersonInfo1.LoadPersonInfo(_Person);
             if(_Person != null && _Person.ID != -1)
-                _Raise(this, true);
+                _Raise(this, null);
         }
     }
 }

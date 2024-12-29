@@ -48,28 +48,30 @@
             this.linkLblAddImage = new System.Windows.Forms.LinkLabel();
             this.gboxEmployeeInfo = new System.Windows.Forms.GroupBox();
             this.linkLblRemoveImage = new System.Windows.Forms.LinkLabel();
-            this.ctrlPersonWithFilter1 = new SimpleClinic.ctrlPersonWithFilter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ctrlPersonWithFilter1 = new SimpleClinic.ctrlPersonWithFilter();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEmployeeImage)).BeginInit();
             this.gboxEmployeeInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.DarkCyan;
-            this.lblTitle.Location = new System.Drawing.Point(279, 9);
+            this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.lblTitle.Location = new System.Drawing.Point(260, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(278, 32);
+            this.lblTitle.Size = new System.Drawing.Size(0, 32);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Add New Employee";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnSave.Location = new System.Drawing.Point(542, 566);
+            this.btnSave.Location = new System.Drawing.Point(542, 595);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.Red;
-            this.btnClose.Location = new System.Drawing.Point(706, 566);
+            this.btnClose.Location = new System.Drawing.Point(705, 595);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 40);
             this.btnClose.TabIndex = 4;
@@ -175,22 +177,22 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(145, 103);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(125, 16);
+            this.label12.Size = new System.Drawing.Size(143, 16);
             this.label12.TabIndex = 14;
-            this.label12.Text = "Type Of Leaving:";
+            this.label12.Text = "Reason Of Leaving:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(320, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(143, 16);
+            this.label10.Size = new System.Drawing.Size(125, 16);
             this.label10.TabIndex = 16;
-            this.label10.Text = "Reason Of Leaving:";
+            this.label10.Text = "Type Of Leaving:";
             // 
             // txtBoxReasonOfLeaving
             // 
-            this.txtBoxReasonOfLeaving.Location = new System.Drawing.Point(280, 90);
+            this.txtBoxReasonOfLeaving.Location = new System.Drawing.Point(311, 86);
             this.txtBoxReasonOfLeaving.Multiline = true;
             this.txtBoxReasonOfLeaving.Name = "txtBoxReasonOfLeaving";
             this.txtBoxReasonOfLeaving.Size = new System.Drawing.Size(488, 62);
@@ -221,7 +223,7 @@
             // linkLblAddImage
             // 
             this.linkLblAddImage.AutoSize = true;
-            this.linkLblAddImage.Location = new System.Drawing.Point(4, 136);
+            this.linkLblAddImage.Location = new System.Drawing.Point(32, 140);
             this.linkLblAddImage.Name = "linkLblAddImage";
             this.linkLblAddImage.Size = new System.Drawing.Size(82, 16);
             this.linkLblAddImage.TabIndex = 20;
@@ -248,9 +250,9 @@
             this.gboxEmployeeInfo.Controls.Add(this.lblEmployeeID);
             this.gboxEmployeeInfo.Controls.Add(this.label1);
             this.gboxEmployeeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gboxEmployeeInfo.Location = new System.Drawing.Point(10, 393);
+            this.gboxEmployeeInfo.Location = new System.Drawing.Point(9, 387);
             this.gboxEmployeeInfo.Name = "gboxEmployeeInfo";
-            this.gboxEmployeeInfo.Size = new System.Drawing.Size(816, 167);
+            this.gboxEmployeeInfo.Size = new System.Drawing.Size(816, 202);
             this.gboxEmployeeInfo.TabIndex = 2;
             this.gboxEmployeeInfo.TabStop = false;
             this.gboxEmployeeInfo.Text = "Employee Info";
@@ -258,7 +260,7 @@
             // linkLblRemoveImage
             // 
             this.linkLblRemoveImage.AutoSize = true;
-            this.linkLblRemoveImage.Location = new System.Drawing.Point(92, 136);
+            this.linkLblRemoveImage.Location = new System.Drawing.Point(17, 180);
             this.linkLblRemoveImage.Name = "linkLblRemoveImage";
             this.linkLblRemoveImage.Size = new System.Drawing.Size(112, 16);
             this.linkLblRemoveImage.TabIndex = 21;
@@ -266,22 +268,22 @@
             this.linkLblRemoveImage.Text = "Remove Image";
             this.linkLblRemoveImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblRemoveImage_LinkClicked);
             // 
-            // ctrlPersonWithFilter1
-            // 
-            this.ctrlPersonWithFilter1.Location = new System.Drawing.Point(17, 55);
-            this.ctrlPersonWithFilter1.Name = "ctrlPersonWithFilter1";
-            this.ctrlPersonWithFilter1.Size = new System.Drawing.Size(802, 332);
-            this.ctrlPersonWithFilter1.TabIndex = 0;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // ctrlPersonWithFilter1
+            // 
+            this.ctrlPersonWithFilter1.Location = new System.Drawing.Point(16, 55);
+            this.ctrlPersonWithFilter1.Name = "ctrlPersonWithFilter1";
+            this.ctrlPersonWithFilter1.Size = new System.Drawing.Size(802, 312);
+            this.ctrlPersonWithFilter1.TabIndex = 0;
             // 
             // frmAddEditEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 618);
+            this.ClientSize = new System.Drawing.Size(835, 647);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gboxEmployeeInfo);
@@ -289,6 +291,7 @@
             this.Controls.Add(this.ctrlPersonWithFilter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAddEditEmployee";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEditEmployee";
             this.Load += new System.EventHandler(this.frmAddEditEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxEmployeeImage)).EndInit();

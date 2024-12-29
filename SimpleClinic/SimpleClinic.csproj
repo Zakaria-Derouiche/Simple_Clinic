@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsUtil.cs" />
+    <Compile Include="ctrlEmployeeWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlEmployeeWithFilter.Designer.cs">
+      <DependentUpon>ctrlEmployeeWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddEditEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +85,12 @@
     <Compile Include="frmAddEditPerson.Designer.cs">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditUser.Designer.cs">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,8 +109,23 @@
     <Compile Include="frmPatientsList.Designer.cs">
       <DependentUpon>frmPatientsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonInfo.Designer.cs">
+      <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserPermissions.Designer.cs">
+      <DependentUpon>frmUserPermissions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctrlEmployeeWithFilter.resx">
+      <DependentUpon>ctrlEmployeeWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditEmployee.resx">
       <DependentUpon>frmAddEditEmployee.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +141,9 @@
     <EmbeddedResource Include="frmAddEditPerson.resx">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditUser.resx">
+      <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +153,12 @@
     <EmbeddedResource Include="frmPatientsList.resx">
       <DependentUpon>frmPatientsList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonInfo.resx">
+      <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserPermissions.resx">
+      <DependentUpon>frmUserPermissions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -130,6 +167,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,6 +187,19 @@
       <Project>{3822d4de-651a-4bed-a976-bd0cbf0a7162}</Project>
       <Name>ClinicBusiness</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EmployeeImages\" />
+    <Folder Include="ImageToDisplay\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HidePassword.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HidePassword.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

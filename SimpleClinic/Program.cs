@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicBusiness;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,8 +16,8 @@ namespace SimpleClinic
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAddEditEmployee(-1));
+            Application.SetCompatibleTextRenderingDefault(false);         
+            Application.Run(new frmAddEditUser(-1));
         }
     }
 }

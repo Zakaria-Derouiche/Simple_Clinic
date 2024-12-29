@@ -38,6 +38,30 @@ namespace ClinicBusiness
             this.Permission = Permission;
         }
 
+        private clsUser(clsEmployee Employee, int UserID, string UserName, string Password, string Permission) 
+        {
+            ID = Employee.ID;
+            NationalNumber = Employee.NationalNumber;
+            FirstName = Employee.FirstName;
+            MidlleName = Employee.MidlleName;
+            LastName = Employee.LastName;
+            BirthDate = Employee.BirthDate;
+            Gender = Employee.Gender;
+            Phone = Employee.Phone;
+            Email = Employee.Email;
+            Address = Employee.Address;
+            CountryID = Employee.CountryID;
+            EmployeeID = Employee.EmployeeID;
+            ImagePath = Employee.ImagePath;
+            HireDate = Employee.HireDate;
+            TypeOfLeaving = Employee.TypeOfLeaving;
+            ReasonOfLeaving = Employee.ReasonOfLeaving;
+            this.UserID = UserID;
+            this.UserName = UserName;
+            this.Password = Password;
+            this.Permission = Permission;
+        }
+
         public static clsUser GetUserInfoByID(int UserID, ref string ErrorMessage)
         {
             int employeeID = -1;
@@ -46,11 +70,10 @@ namespace ClinicBusiness
             string permission = string.Empty;
             if (clsUserData.GetUserInfoByID(UserID, ref employeeID, ref userName, ref password, ref permission, ref ErrorMessage))
             {
-                clsUser User = (clsUser)clsUser.GetEmployeeInfoByID(employeeID, ref ErrorMessage);
-                User.UserID = UserID;
-                User.UserName = userName;
-                User.Password = password;
-                User.Permission = permission;
+                clsEmployee employee = clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage);
+
+                clsUser User = new clsUser(employee, UserID, userName, password, permission);
+              
                 return User;
             }
             else
@@ -58,6 +81,27 @@ namespace ClinicBusiness
                 return null;
             }
         }
+
+        public static clsUser GetUserInfoByEmployeeID(int EmployeeID, ref string ErrorMessage)
+        {
+            int userID = -1;
+            string userName = string.Empty;
+            string password = string.Empty;
+            string permission = string.Empty;
+            if (clsUserData.GetUserInfoByEmployeeID(EmployeeID, ref userID, ref userName, ref password, ref permission, ref ErrorMessage))
+            {
+                clsEmployee employee = clsEmployee.GetEmployeeInfoByID(EmployeeID, ref ErrorMessage);
+
+                clsUser User = new clsUser(employee, userID, userName, password, permission);
+
+                return User;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static clsUser GetUserInfoByUserName(string userName, ref string ErrorMessage)
         {
             int iD = -1;

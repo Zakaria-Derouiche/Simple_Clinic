@@ -13,8 +13,7 @@ namespace SimpleClinic
 {
     public partial class ctrlEmployeeInfo : UserControl
     {
-        private clsEmployee _Employee;
-        private string ErrorMessage = string.Empty;
+        
         public ctrlEmployeeInfo()
         {
             InitializeComponent();
@@ -22,30 +21,41 @@ namespace SimpleClinic
        
         private void ctrlEmployeeInfo_Load(object sender, EventArgs e)
         {
+            LoadEmployeeInfo(null);
+        }
+      
+        
+        public void LoadEmployeeInfo(clsEmployee Employee)
+        {
+            lblEmployeeID.Text = Employee == null || Employee.EmployeeID == -1 ? "[???]" : Employee.EmployeeID.ToString();
 
+            lblPersonID.Text = Employee == null || Employee.ID == -1 ? "[???]" : Employee.ID.ToString();
+
+            lblHireDate.Text = Employee == null || Employee.EmployeeID == -1 ? "[???]" : Employee.HireDate.ToShortDateString();
+
+            lblEndDate.Text = Employee == null || Employee.EmployeeID == -1 ? "[???]" :
+                !Employee.EndDate.HasValue ? "N/A" : Employee.EndDate.Value.ToShortDateString();
+
+            lblTypeOfLeaving.Text = Employee == null || Employee.EmployeeID == -1 ? "[???]" :
+                !Employee.TypeOfLeaving.HasValue ? "N/A" : Employee.TypeOfLeaving.ToString();
+
+            lblReasonOfLeaving.Text = Employee == null || Employee.EmployeeID == -1 ? "[???]" :
+                Employee.ReasonOfLeaving == string.Empty ? "N/A" : Employee.ReasonOfLeaving;
+
+            picBoxEmployeeImage.ImageLocation = Employee == null || Employee.EmployeeID == -1 ||
+                Employee.ImagePath == string.Empty ? "" : _GetDecryptedImage(Employee.ImagePath);
+ 
         }
-        private void _LoadInfo()
+
+        private string _GetDecryptedImage(string ImagePath)
         {
-            lblEmployeeID.Text = _Employee == null || _Employee.EmployeeID == -1 ? "[???]" : _Employee.EmployeeID.ToString();
-            lblPersonID.Text = _Employee == null || _Employee.ID == -1 ? "[???]" : _Employee.ID.ToString();
-            lblHireDate.Text = _Employee == null || _Employee.EmployeeID == -1 ? "[???]" : _Employee.HireDate.ToShortDateString();
-            lblEndDate.Text = _Employee == null || _Employee.EmployeeID == -1 ? "[???]" : 
-                _Employee.EndDate.Value == null? "N/A" : _Employee.EndDate.Value.ToShortDateString();
-            lblTypeOfLeaving.Text = _Employee == null || _Employee.EmployeeID == -1 ? "[???]" :
-                _Employee.TypeOfLeaving == null ? "N/A" : _Employee.TypeOfLeaving.ToString();
-            lblReasonOfLeaving.Text = _Employee == null || _Employee.EmployeeID == -1 ? "[???]" :
-                _Employee.ReasonOfLeaving == string.Empty ? "N/A" : _Employee.ReasonOfLeaving;
-            picBoxEmployeeImage.ImageLocation = _Employee == null || _Employee.EmployeeID == -1 ||
-                _Employee.ImagePath == string.Empty ? "" : _Employee.ImagePath; 
-        }
-        private bool _CheckEmployee()
-        {
-            return _Employee != null && _Employee.EmployeeID != -1;
-        }
-        public void LoadEmployeeInfo(int PersonID)
-        {
-            _Employee = clsEmployee.GetEmployeeInfoByID(PersonID, ref ErrorMessage);
-            _LoadInfo();
+            string NewImagePath = clsEncryptionDecryption.Decrypt(ImagePath);
+
+            string DispalyedImagePath = clsGlobal.DesplayedImageFolder + clsUtil.GetFileName(NewImagePath);
+
+            clsEncryptionDecryption.DecryptFile(NewImagePath, DispalyedImagePath);
+
+            return DispalyedImagePath;
         }
 
     }
