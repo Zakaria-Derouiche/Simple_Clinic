@@ -25,17 +25,33 @@ namespace ClinicBusiness
             Password = string.Empty;
             Permission = string.Empty;
         }
-        private clsUser(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
-            bool Gender, string Phone, string Email, string Address, byte CountryID, int EmployeeID, string ImagePath,
-            DateTime HireDtae, DateTime EndDate, bool TypeOfLeaving, string ReasonOfLeaving, int UserID,
-            string UserName, string Password, string Permission) :
-            base(ID, NationalNumber, FirstName, MidlleName, LastName, BirthDate, Gender, Phone, Email, Address, CountryID,
-                EmployeeID, ImagePath, HireDtae, EndDate, TypeOfLeaving, ReasonOfLeaving)
+
+
+        public clsUser(clsEmployee Employee)
         {
-            this.UserID = UserID;
-            this.UserName = UserName;
-            this.Password = Password;
-            this.Permission = Permission;
+            ID = Employee.ID;
+            NationalNumber = Employee.NationalNumber;
+            FirstName = Employee.FirstName;
+            MidlleName = Employee.MidlleName;
+            LastName = Employee.LastName;
+            BirthDate = Employee.BirthDate;
+            Gender = Employee.Gender;
+            Phone = Employee.Phone;
+            Email = Employee.Email;
+            Address = Employee.Address;
+            CountryID = Employee.CountryID;
+            EmployeeID = Employee.EmployeeID;
+            ImagePath = Employee.ImagePath;
+            HireDate = Employee.HireDate;
+            TypeOfLeaving = Employee.TypeOfLeaving;
+            ReasonOfLeaving = Employee.ReasonOfLeaving;
+
+            this.UserID = -1;
+            this.UserName = "";
+            this.Password = "";
+            this.Permission = "";
+
+            _Mode = enMode.Add;
         }
 
         private clsUser(clsEmployee Employee, int UserID, string UserName, string Password, string Permission) 
@@ -56,10 +72,13 @@ namespace ClinicBusiness
             HireDate = Employee.HireDate;
             TypeOfLeaving = Employee.TypeOfLeaving;
             ReasonOfLeaving = Employee.ReasonOfLeaving;
+
             this.UserID = UserID;
             this.UserName = UserName;
             this.Password = Password;
             this.Permission = Permission;
+
+            _Mode = enMode.Edit;
         }
 
         public static clsUser GetUserInfoByID(int UserID, ref string ErrorMessage)
@@ -70,11 +89,8 @@ namespace ClinicBusiness
             string permission = string.Empty;
             if (clsUserData.GetUserInfoByID(UserID, ref employeeID, ref userName, ref password, ref permission, ref ErrorMessage))
             {
-                clsEmployee employee = clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage);
-
-                clsUser User = new clsUser(employee, UserID, userName, password, permission);
-              
-                return User;
+                return new clsUser(clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage), UserID, userName, password,
+                    permission);
             }
             else
             {
@@ -90,11 +106,8 @@ namespace ClinicBusiness
             string permission = string.Empty;
             if (clsUserData.GetUserInfoByEmployeeID(EmployeeID, ref userID, ref userName, ref password, ref permission, ref ErrorMessage))
             {
-                clsEmployee employee = clsEmployee.GetEmployeeInfoByID(EmployeeID, ref ErrorMessage);
-
-                clsUser User = new clsUser(employee, userID, userName, password, permission);
-
-                return User;
+                return new clsUser(clsEmployee.GetEmployeeInfoByID(EmployeeID, ref ErrorMessage), userID, userName, password,
+                    permission);
             }
             else
             {
@@ -105,17 +118,17 @@ namespace ClinicBusiness
         public static clsUser GetUserInfoByUserName(string userName, ref string ErrorMessage)
         {
             int iD = -1;
+
             int employeeID = -1;
+
             string password = string.Empty;
+
             string permission = string.Empty;
+
             if (clsUserData.GetUserInfoByUserName(userName, ref iD, ref employeeID, ref password, ref permission, ref ErrorMessage))
             {
-                clsUser User = (clsUser)clsUser.GetEmployeeInfoByID(employeeID, ref ErrorMessage);
-                User.UserID = iD;
-                User.UserName = userName;
-                User.Password = password;
-                User.Permission = permission;
-                return User;
+                return new clsUser(clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage), iD, userName, password,
+                    permission);
             }
             else
             {

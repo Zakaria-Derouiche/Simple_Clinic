@@ -99,7 +99,16 @@ namespace ClinicBusiness
                 }
             }
         }
+        public static void DecryptPersonInfo(ref clsPerson Person)
+        {
+            Person.NationalNumber = Decrypt(Person.NationalNumber);
+            Person.FirstName = Decrypt(Person.FirstName);
+            Person.MidlleName = Person.MidlleName == string.Empty ? "" : Decrypt(Person.MidlleName);
+            Person.LastName = Decrypt(Person.LastName);
+            Person.Phone = Decrypt(Person.Phone);
+            Person.Email = Decrypt(Person.Email);
+            Person.Address = Decrypt(Person.Address);
+        }
 
-        
     }
 }

@@ -11,6 +11,7 @@ namespace ClinicBusiness
     public class clsEmployee : clsPerson
     {
         private enum enMode { Add = 1, Edit = 2 }
+
         private enMode _Mode;
         public int EmployeeID { set; get; }
         public string ImagePath { set; get; }
@@ -18,6 +19,7 @@ namespace ClinicBusiness
         public Nullable<DateTime> EndDate { set; get; }
         public Nullable<bool> TypeOfLeaving { set; get; }
         public string ReasonOfLeaving { set; get; }
+
         public clsEmployee() : base()
         {
             EmployeeID = -1;
@@ -29,22 +31,34 @@ namespace ClinicBusiness
             _Mode = enMode.Add;
         }
 
-        
-        public clsEmployee(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
-            bool Gender, string Phone, string Email, string Address, byte CountryID, int EmployeeID, string ImagePath,
-            DateTime HireDate, DateTime EndDate, bool TypeOfLeaving, string ReasonOfLeaving) :
-            base(ID, NationalNumber, FirstName, MidlleName, LastName, BirthDate, Gender, Phone, Email, Address, CountryID)
+
+        public clsEmployee(clsPerson Person)
         {
-            this.EmployeeID = EmployeeID;
-            this.ImagePath = ImagePath;
-            this.HireDate = HireDate;
-            this.EndDate = EndDate;
-            this.TypeOfLeaving = TypeOfLeaving;
-            this.ReasonOfLeaving = ReasonOfLeaving;
-            _Mode = enMode.Edit;
+
+            ID = Person.ID;
+            NationalNumber = Person.NationalNumber;
+            FirstName = Person.FirstName;
+            MidlleName = Person.MidlleName;
+            LastName = Person.LastName;
+            BirthDate = Person.BirthDate;
+            Gender = Person.Gender;
+            Phone = Person.Phone;
+            Email = Person.Email;
+            Address = Person.Address;
+            CountryID = Person.CountryID;
+
+            EmployeeID = -1;
+            ImagePath = string.Empty;
+            HireDate = DateTime.Now;
+            EndDate = null;
+            TypeOfLeaving = null;
+            ReasonOfLeaving = string.Empty;
+            _Mode = enMode.Add;
+
         }
 
-        public clsEmployee(clsPerson Person )
+        private clsEmployee(clsPerson Person, int EmployeeID,   string ImagePath,  DateTime HireDate, Nullable<DateTime> EndDate,
+                Nullable<bool>TypeOfLeaving, string  ReasonOfLeaving)
         {
             ID = Person.ID;
             NationalNumber = Person.NationalNumber;
@@ -57,40 +71,36 @@ namespace ClinicBusiness
             Email = Person.Email;
             Address = Person.Address;
             CountryID = Person.CountryID;
-            EmployeeID = -1;
-            ImagePath = string.Empty;
-            HireDate = DateTime.Now;
-            EndDate = null;
-            TypeOfLeaving = null;
-            ReasonOfLeaving = string.Empty;
-            _Mode = enMode.Add;
+
+            this.EmployeeID = EmployeeID;
+            this.ImagePath = ImagePath;
+            this.HireDate = HireDate;
+            this.EndDate = EndDate;
+            this.TypeOfLeaving = TypeOfLeaving;
+            this.ReasonOfLeaving = ReasonOfLeaving;
+            _Mode = enMode.Edit;
 
         }
         public static clsEmployee GetEmployeeInfoByID(int EmployeeID, ref string ErrorMessage)
         {
+
             int personID = -1;
+
             string imagePath = string.Empty;
+
             DateTime hireDate = DateTime.MinValue;
+
             Nullable<DateTime> endDate = null;
+
             Nullable<bool> typeOfLeaving = null;
+
             string reasonOfLeaving = string.Empty;
+
             if (clsEmployeeData.GetEmployeeInfo(EmployeeID, ref personID, ref  imagePath, ref hireDate, ref endDate,
                 ref typeOfLeaving, ref reasonOfLeaving, ref ErrorMessage))
             {
-                clsPerson Person = GetPersonInfoByID(personID, ref ErrorMessage);
-                if(Person != null)
-                {
-                    clsEmployee Employee = new clsEmployee(Person);
-                    Employee.EmployeeID = EmployeeID;
-                    Employee.ImagePath = imagePath;
-                    Employee.HireDate = hireDate;
-                    Employee.EndDate = endDate;
-                    Employee.TypeOfLeaving = typeOfLeaving;
-                    Employee.ReasonOfLeaving = reasonOfLeaving;
-                    return Employee;
-                }
-                return null;
-                
+                return new clsEmployee(GetPersonInfoByID(personID, ref ErrorMessage), EmployeeID,  imagePath,
+                    hireDate, endDate, typeOfLeaving, reasonOfLeaving);
             }
             else
             {
@@ -109,15 +119,9 @@ namespace ClinicBusiness
             if (clsEmployeeData.GetEmployeeInfoByPersonID(PersonID, ref employeeID, ref imagePath, ref hireDate, ref endDate,
                 ref typeOfLeaving, ref reasonOfLeaving, ref ErrorMessage))
             {
-                clsEmployee Employee = new clsEmployee(clsPerson.GetPersonInfoByID(PersonID, ref ErrorMessage));
-                Employee.EmployeeID = employeeID;
-                Employee.ImagePath = imagePath;
-                Employee.HireDate = hireDate;
-                Employee.EndDate = endDate;
-                Employee.TypeOfLeaving = typeOfLeaving;
-                Employee.ReasonOfLeaving = reasonOfLeaving;
-                Employee._Mode = enMode.Edit;
-                return Employee;
+
+                return new clsEmployee(clsPerson.GetPersonInfoByID(PersonID, ref ErrorMessage), employeeID, imagePath, hireDate,
+                    endDate, typeOfLeaving,reasonOfLeaving);
             }
             else
             {

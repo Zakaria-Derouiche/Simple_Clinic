@@ -30,6 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gBoxUserInfo = new System.Windows.Forms.GroupBox();
+            this.btnShowHidePassword = new System.Windows.Forms.Button();
             this.rbCustom = new System.Windows.Forms.RadioButton();
             this.rbFullControl = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,8 +40,9 @@
             this.txtBoxUserName = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnShowHidePassword = new System.Windows.Forms.Button();
             this.ctrlEmployeeWithFilter1 = new SimpleClinic.ctrlEmployeeWithFilter();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblUserID = new System.Windows.Forms.Label();
             this.gBoxUserInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +58,8 @@
             // 
             // gBoxUserInfo
             // 
+            this.gBoxUserInfo.Controls.Add(this.lblUserID);
+            this.gBoxUserInfo.Controls.Add(this.label4);
             this.gBoxUserInfo.Controls.Add(this.btnShowHidePassword);
             this.gBoxUserInfo.Controls.Add(this.rbCustom);
             this.gBoxUserInfo.Controls.Add(this.rbFullControl);
@@ -72,10 +76,23 @@
             this.gBoxUserInfo.TabStop = false;
             this.gBoxUserInfo.Text = "User Info";
             // 
+            // btnShowHidePassword
+            // 
+            this.btnShowHidePassword.BackgroundImage = global::SimpleClinic.Properties.Resources.eye;
+            this.btnShowHidePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnShowHidePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowHidePassword.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.btnShowHidePassword.Location = new System.Drawing.Point(716, 18);
+            this.btnShowHidePassword.Name = "btnShowHidePassword";
+            this.btnShowHidePassword.Size = new System.Drawing.Size(34, 33);
+            this.btnShowHidePassword.TabIndex = 5;
+            this.btnShowHidePassword.UseVisualStyleBackColor = true;
+            this.btnShowHidePassword.Click += new System.EventHandler(this.btnShowHidePassword_Click);
+            // 
             // rbCustom
             // 
             this.rbCustom.AutoSize = true;
-            this.rbCustom.Location = new System.Drawing.Point(596, 29);
+            this.rbCustom.Location = new System.Drawing.Point(687, 62);
             this.rbCustom.Name = "rbCustom";
             this.rbCustom.Size = new System.Drawing.Size(79, 20);
             this.rbCustom.TabIndex = 10;
@@ -87,18 +104,19 @@
             // rbFullControl
             // 
             this.rbFullControl.AutoSize = true;
-            this.rbFullControl.Location = new System.Drawing.Point(461, 31);
+            this.rbFullControl.Location = new System.Drawing.Point(552, 64);
             this.rbFullControl.Name = "rbFullControl";
             this.rbFullControl.Size = new System.Drawing.Size(106, 20);
             this.rbFullControl.TabIndex = 9;
             this.rbFullControl.TabStop = true;
             this.rbFullControl.Text = "Full Control";
             this.rbFullControl.UseVisualStyleBackColor = true;
+            this.rbFullControl.Click += new System.EventHandler(this.rbFullControl_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(327, 31);
+            this.label3.Location = new System.Drawing.Point(418, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 16);
             this.label3.TabIndex = 8;
@@ -107,7 +125,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 67);
+            this.label2.Location = new System.Drawing.Point(418, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 16);
             this.label2.TabIndex = 6;
@@ -115,7 +133,7 @@
             // 
             // txtBoxPassword
             // 
-            this.txtBoxPassword.Location = new System.Drawing.Point(122, 61);
+            this.txtBoxPassword.Location = new System.Drawing.Point(525, 23);
             this.txtBoxPassword.Name = "txtBoxPassword";
             this.txtBoxPassword.Size = new System.Drawing.Size(185, 22);
             this.txtBoxPassword.TabIndex = 7;
@@ -124,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 31);
+            this.label1.Location = new System.Drawing.Point(17, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 16);
             this.label1.TabIndex = 4;
@@ -132,10 +150,11 @@
             // 
             // txtBoxUserName
             // 
-            this.txtBoxUserName.Location = new System.Drawing.Point(122, 25);
+            this.txtBoxUserName.Location = new System.Drawing.Point(124, 62);
             this.txtBoxUserName.Name = "txtBoxUserName";
             this.txtBoxUserName.Size = new System.Drawing.Size(185, 22);
             this.txtBoxUserName.TabIndex = 5;
+            this.txtBoxUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxUserName_KeyPress);
             // 
             // btnClose
             // 
@@ -161,25 +180,29 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnShowHidePassword
-            // 
-            this.btnShowHidePassword.BackgroundImage = global::SimpleClinic.Properties.Resources.eye;
-            this.btnShowHidePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnShowHidePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowHidePassword.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnShowHidePassword.Location = new System.Drawing.Point(313, 56);
-            this.btnShowHidePassword.Name = "btnShowHidePassword";
-            this.btnShowHidePassword.Size = new System.Drawing.Size(34, 33);
-            this.btnShowHidePassword.TabIndex = 5;
-            this.btnShowHidePassword.UseVisualStyleBackColor = true;
-            this.btnShowHidePassword.Click += new System.EventHandler(this.btnShowHidePassword_Click);
-            // 
             // ctrlEmployeeWithFilter1
             // 
             this.ctrlEmployeeWithFilter1.Location = new System.Drawing.Point(13, 68);
             this.ctrlEmployeeWithFilter1.Name = "ctrlEmployeeWithFilter1";
             this.ctrlEmployeeWithFilter1.Size = new System.Drawing.Size(841, 340);
             this.ctrlEmployeeWithFilter1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 16);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "User ID:";
+            // 
+            // lblUserID
+            // 
+            this.lblUserID.AutoSize = true;
+            this.lblUserID.Location = new System.Drawing.Point(121, 29);
+            this.lblUserID.Name = "lblUserID";
+            this.lblUserID.Size = new System.Drawing.Size(0, 16);
+            this.lblUserID.TabIndex = 12;
             // 
             // frmAddEditUser
             // 
@@ -191,7 +214,9 @@
             this.Controls.Add(this.gBoxUserInfo);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlEmployeeWithFilter1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAddEditUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmAddEditUser_Load);
             this.gBoxUserInfo.ResumeLayout(false);
             this.gBoxUserInfo.PerformLayout();
@@ -214,5 +239,7 @@
         private System.Windows.Forms.Label label3;
         private ctrlEmployeeWithFilter ctrlEmployeeWithFilter1;
         private System.Windows.Forms.Button btnShowHidePassword;
+        private System.Windows.Forms.Label lblUserID;
+        private System.Windows.Forms.Label label4;
     }
 }

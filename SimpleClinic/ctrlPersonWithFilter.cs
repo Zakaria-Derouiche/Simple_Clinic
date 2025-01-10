@@ -15,29 +15,31 @@ namespace SimpleClinic
 {
     public partial class ctrlPersonWithFilter : UserControl
     {
-
         public event EventHandler PersonSelected;
         private void _Raise(object sender, EventArgs e)
         {
             PersonSelected?.Invoke(this, null);
         }
         private clsPerson _Person = new clsPerson();
+
         public clsPerson Person { get { return _Person; } }
 
         public ctrlPersonWithFilter()
         {
             InitializeComponent();
-        }
-       
+        }   
         private void comBoxFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBoxFilterBy.Text = string.Empty;
+
             _Person = new clsPerson();
+
             ctrlPersonInfo1.LoadPersonInfo(_Person);
         }
         private void ctrlPersonWithFilter_Load(object sender, EventArgs e)
         {
             comBoxFilterBy.SelectedIndex = 0;
+
             btnFind.Enabled = false;
         }
         private void txtBoxFilterBy_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,13 +59,11 @@ namespace SimpleClinic
         public void LoadPersonInfo(clsPerson Person)
         {
             _Person = Person;
-            if(_Person != null)
-            {
-                ctrlPersonInfo1.LoadPersonInfo(Person);
-                gBoxFilter.Enabled = false;
-            }
-                
-            
+
+            ctrlPersonInfo1.LoadPersonInfo(Person);
+
+            gBoxFilter.Enabled = false;
+           
         }
         private void _GetPerson()
         {
@@ -73,13 +73,34 @@ namespace SimpleClinic
             else
                 _Person = clsPerson.GetPersonInfoByFullName(string.Join(" ", txtBoxFilterBy.Text.Split(' ').
                 Select(Val => clsEncryptionDecryption.Encrypt(Val))), ref clsGlobal.ErrorMessage);
+
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
            _GetPerson();
+
             ctrlPersonInfo1.LoadPersonInfo(_Person);
-            if(_Person != null && _Person.ID != -1)
-                _Raise(this, null);
+
+            _Raise(this, null);
+        }
+
+        private void _Raise1(object sender, clsPerson Person)
+        {
+           LoadPersonInfo(Person);
+
+           _Raise(this, null);
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+            frmAddEditPerson Person = new frmAddEditPerson(-1, ParentForm);
+
+            ParentForm.Hide();
+
+            Person.PersonAddedOrUpdated += _Raise1;
+
+            Person.ShowDialog();
+
         }
     }
 }

@@ -13,21 +13,29 @@ namespace SimpleClinic
 {
     public partial class frmPersonInfo : Form
     {
-        public frmPersonInfo(clsPerson Person)
+        private Form _Sender;
+
+        clsPerson _Person;
+        public frmPersonInfo(clsPerson Person, Form Sender = null)
         {
             InitializeComponent();
 
-            ctrlPersonInfo1.LoadPersonInfo(Person);
+            _Person = Person;
+
+            _Sender = Sender;
         }
+       
+
         private void frmPersonInfo_Load(object sender, EventArgs e)
         {
-           
+            ctrlPersonInfo1.LoadPersonInfo(_Person);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            _Sender.Show();
+
             this.Close();
         }
 
-      
     }
 }

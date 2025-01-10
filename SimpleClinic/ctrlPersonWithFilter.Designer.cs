@@ -30,10 +30,11 @@
         {
             this.ctrlPersonInfo1 = new SimpleClinic.ctrlPersonInfo();
             this.gBoxFilter = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnFind = new System.Windows.Forms.Button();
             this.txtBoxFilterBy = new System.Windows.Forms.TextBox();
             this.comBoxFilterBy = new System.Windows.Forms.ComboBox();
-            this.btnFind = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.gBoxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             // 
             // gBoxFilter
             // 
+            this.gBoxFilter.Controls.Add(this.btnAdd);
             this.gBoxFilter.Controls.Add(this.btnFind);
             this.gBoxFilter.Controls.Add(this.txtBoxFilterBy);
             this.gBoxFilter.Controls.Add(this.comBoxFilterBy);
@@ -53,22 +55,24 @@
             this.gBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gBoxFilter.Location = new System.Drawing.Point(14, 3);
             this.gBoxFilter.Name = "gBoxFilter";
-            this.gBoxFilter.Size = new System.Drawing.Size(641, 50);
+            this.gBoxFilter.Size = new System.Drawing.Size(775, 50);
             this.gBoxFilter.TabIndex = 1;
             this.gBoxFilter.TabStop = false;
             // 
-            // label1
+            // btnFind
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Search By:";
+            this.btnFind.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnFind.Location = new System.Drawing.Point(489, 14);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(96, 25);
+            this.btnFind.TabIndex = 5;
+            this.btnFind.Text = "Find";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // txtBoxFilterBy
             // 
-            this.txtBoxFilterBy.Location = new System.Drawing.Point(277, 15);
+            this.txtBoxFilterBy.Location = new System.Drawing.Point(276, 15);
             this.txtBoxFilterBy.MaxLength = 100;
             this.txtBoxFilterBy.Name = "txtBoxFilterBy";
             this.txtBoxFilterBy.Size = new System.Drawing.Size(198, 22);
@@ -82,22 +86,31 @@
             this.comBoxFilterBy.Items.AddRange(new object[] {
             "National Number",
             "Full Name"});
-            this.comBoxFilterBy.Location = new System.Drawing.Point(104, 14);
+            this.comBoxFilterBy.Location = new System.Drawing.Point(113, 14);
             this.comBoxFilterBy.Name = "comBoxFilterBy";
             this.comBoxFilterBy.Size = new System.Drawing.Size(148, 24);
             this.comBoxFilterBy.TabIndex = 4;
             this.comBoxFilterBy.SelectedIndexChanged += new System.EventHandler(this.comBoxFilterBy_SelectedIndexChanged);
             // 
-            // btnFind
+            // label1
             // 
-            this.btnFind.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnFind.Location = new System.Drawing.Point(501, 14);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(96, 25);
-            this.btnFind.TabIndex = 5;
-            this.btnFind.Text = "Find";
-            this.btnFind.UseVisualStyleBackColor = true;
-            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Search By:";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.btnAdd.Location = new System.Drawing.Point(600, 14);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(150, 25);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add New Person";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // ctrlPersonWithFilter
             // 
@@ -122,5 +135,6 @@
         private System.Windows.Forms.TextBox txtBoxFilterBy;
         private System.Windows.Forms.ComboBox comBoxFilterBy;
         private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

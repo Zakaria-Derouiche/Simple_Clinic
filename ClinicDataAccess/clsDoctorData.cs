@@ -112,6 +112,55 @@ namespace ClinicDataAccess
             }
             return IsFound;
         }
+
+        public static bool GetDoctorInfoByEmployeeID(int EmployeeID, ref int ID, ref string Specialization, ref string ErrorMessage)
+        {
+            bool IsFound = false;
+            try
+            {
+                using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
+                {
+                    using (SqlCommand Command = new SqlCommand("SP_GetDoctorInfoByEmployeeID", Connection))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
+                        SqlParameter IDOutputParameter = new SqlParameter("@ID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IDOutputParameter);
+                        SqlParameter SpecializationOutputParameter = new SqlParameter("@Specialization", SqlDbType.NVarChar, 100)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(SpecializationOutputParameter);
+                        SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsFoundOutputParameter);
+
+                        Connection.Open();
+
+                        Command.ExecuteNonQuery();
+
+                        IsFound = (bool)Command.Parameters["@IsFound"].Value;
+
+                        if (IsFound)
+                        {
+                            ID = (int)Command.Parameters["@ID"].Value;
+                            Specialization = (string)Command.Parameters["@Specialization"].Value;
+                        }
+                        Connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            return IsFound;
+        }
         public static bool AddNewDoctor(ref int ID, int EmployeeID, string Specialization,int CreationByUserID,
             ref string ErrorMessage)
         {
@@ -151,12 +200,12 @@ namespace ClinicDataAccess
             {
                 using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
                 {
-                    using (SqlCommand Command = new SqlCommand("SP_UpdateUserInfo", Connection))
+                    using (SqlCommand Command = new SqlCommand("SP_UpdateDoctorInfo", Connection))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@ID", ID);
                         Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-                        Command.Parameters.AddWithValue("@Specilaization", Specialization);
+                        Command.Parameters.AddWithValue("@Specialization", Specialization);
                         Command.Parameters.AddWithValue("@OperationUserID", UpdateUserID);
                         SqlParameter IsUpdatedParameter = new SqlParameter("@IsUpdated", SqlDbType.Bit)
                         {

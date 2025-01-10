@@ -219,6 +219,8 @@ namespace ClinicDataAccess
             }
             return IsFound;
         }
+
+
         public static bool GetUserInfoByUserName(string UserName, ref int ID, ref int EmployeeID, ref string Password,
            ref string Permission, ref string ErrorMessage)
         {
@@ -230,17 +232,19 @@ namespace ClinicDataAccess
                     using (SqlCommand Command = new SqlCommand("SP_GetUserInfoByUserName", Connection))
                     {
                         Command.CommandType = CommandType.StoredProcedure;
+
                         Command.Parameters.AddWithValue("@UserName", UserName);
-                        SqlParameter EmployeeIDOutputParameter = new SqlParameter("@EmployeeID", SqlDbType.Int)
-                        {
-                            Direction = ParameterDirection.Output
-                        };
-                        Command.Parameters.Add(EmployeeIDOutputParameter);
+                       
                         SqlParameter IDOutputParameter = new SqlParameter("@ID", SqlDbType.Int)
                         {
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(IDOutputParameter);
+                        SqlParameter EmployeeIDOutputParameter = new SqlParameter("@EmployeeID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(EmployeeIDOutputParameter);
                         SqlParameter PasswordOutputParameter = new SqlParameter("@Password", SqlDbType.NVarChar, 200)
                         {
                             Direction = ParameterDirection.Output
@@ -288,7 +292,7 @@ namespace ClinicDataAccess
                     {
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-                        Command.Parameters.AddWithValue("@UserIName", UserName);
+                        Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@Permission", Permission);
                         Command.Parameters.AddWithValue("@OperationUserID", CreationByUserID);
@@ -324,7 +328,7 @@ namespace ClinicDataAccess
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@ID", ID);
                         Command.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-                        Command.Parameters.AddWithValue("@UserIName", UserName);
+                        Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@Permission", Permission);
                         Command.Parameters.AddWithValue("@OperationUserID", UpdateUserID);

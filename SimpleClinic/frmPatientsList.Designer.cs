@@ -30,22 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvPatients = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmsPatients = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPatientInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updatePatientInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPatientHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearchPage = new System.Windows.Forms.Button();
             this.lblTotalPageNumber = new System.Windows.Forms.Label();
+            this.lblRecordsNumber = new System.Windows.Forms.Label();
             this.lblPageNumber = new System.Windows.Forms.Label();
+            this.lblTotalRecordNumber = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.txtBoxPageNumber = new System.Windows.Forms.TextBox();
             this.btnPrev = new System.Windows.Forms.Button();
-            this.lblRecordsNumber = new System.Windows.Forms.Label();
-            this.lblTotalRecordNumber = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPatients)).BeginInit();
             this.cmsPatients.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,6 +69,45 @@
             this.dgvPatients.Size = new System.Drawing.Size(1135, 257);
             this.dgvPatients.TabIndex = 0;
             // 
+            // cmsPatients
+            // 
+            this.cmsPatients.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsPatients.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPatientInfoToolStripMenuItem,
+            this.addAPatientToolStripMenuItem,
+            this.deleteAPatientToolStripMenuItem,
+            this.showPatientHToolStripMenuItem});
+            this.cmsPatients.Name = "cmsPatients";
+            this.cmsPatients.Size = new System.Drawing.Size(313, 100);
+            // 
+            // showPatientInfoToolStripMenuItem
+            // 
+            this.showPatientInfoToolStripMenuItem.Name = "showPatientInfoToolStripMenuItem";
+            this.showPatientInfoToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.showPatientInfoToolStripMenuItem.Text = "Show Patient Info";
+            this.showPatientInfoToolStripMenuItem.Click += new System.EventHandler(this.showPartientInfoToolStripMenuItem_Click);
+            // 
+            // addAPatientToolStripMenuItem
+            // 
+            this.addAPatientToolStripMenuItem.Name = "addAPatientToolStripMenuItem";
+            this.addAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.addAPatientToolStripMenuItem.Text = "Add A Patient";
+            this.addAPatientToolStripMenuItem.Click += new System.EventHandler(this.addAPatientToolStripMenuItem_Click);
+            // 
+            // deleteAPatientToolStripMenuItem
+            // 
+            this.deleteAPatientToolStripMenuItem.Name = "deleteAPatientToolStripMenuItem";
+            this.deleteAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.deleteAPatientToolStripMenuItem.Text = "Delete A Patient";
+            this.deleteAPatientToolStripMenuItem.Click += new System.EventHandler(this.deleteAPatienttToolStripMenuItem_Click);
+            // 
+            // showPatientHToolStripMenuItem
+            // 
+            this.showPatientHToolStripMenuItem.Name = "showPatientHToolStripMenuItem";
+            this.showPatientHToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.showPatientHToolStripMenuItem.Text = "Show Patient Appointments History";
+            this.showPatientHToolStripMenuItem.Click += new System.EventHandler(this.showPatientHToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -79,53 +118,6 @@
             this.label1.Size = new System.Drawing.Size(190, 36);
             this.label1.TabIndex = 1;
             this.label1.Text = "Patients List";
-            // 
-            // cmsPatients
-            // 
-            this.cmsPatients.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsPatients.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showPatientInfoToolStripMenuItem,
-            this.addAPatientToolStripMenuItem,
-            this.updatePatientInfoToolStripMenuItem,
-            this.deleteAPatientToolStripMenuItem,
-            this.showPatientHToolStripMenuItem});
-            this.cmsPatients.Name = "cmsPatients";
-            this.cmsPatients.Size = new System.Drawing.Size(313, 152);
-            // 
-            // showPatientInfoToolStripMenuItem
-            // 
-            this.showPatientInfoToolStripMenuItem.Name = "showPatientInfoToolStripMenuItem";
-            this.showPatientInfoToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.showPatientInfoToolStripMenuItem.Text = "Show Patient Info";
-            this.showPatientInfoToolStripMenuItem.Click += new System.EventHandler(this.showPatientInfoToolStripMenuItem_Click);
-            // 
-            // addAPatientToolStripMenuItem
-            // 
-            this.addAPatientToolStripMenuItem.Name = "addAPatientToolStripMenuItem";
-            this.addAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.addAPatientToolStripMenuItem.Text = "Add A Patient";
-            this.addAPatientToolStripMenuItem.Click += new System.EventHandler(this.addAPatientToolStripMenuItem_Click);
-            // 
-            // updatePatientInfoToolStripMenuItem
-            // 
-            this.updatePatientInfoToolStripMenuItem.Name = "updatePatientInfoToolStripMenuItem";
-            this.updatePatientInfoToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.updatePatientInfoToolStripMenuItem.Text = "Update Patient Info";
-            this.updatePatientInfoToolStripMenuItem.Click += new System.EventHandler(this.updatePatientInfoToolStripMenuItem_Click);
-            // 
-            // deleteAPatientToolStripMenuItem
-            // 
-            this.deleteAPatientToolStripMenuItem.Name = "deleteAPatientToolStripMenuItem";
-            this.deleteAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.deleteAPatientToolStripMenuItem.Text = "Delete A Patient";
-            this.deleteAPatientToolStripMenuItem.Click += new System.EventHandler(this.deleteAPatientToolStripMenuItem_Click);
-            // 
-            // showPatientHToolStripMenuItem
-            // 
-            this.showPatientHToolStripMenuItem.Name = "showPatientHToolStripMenuItem";
-            this.showPatientHToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.showPatientHToolStripMenuItem.Text = "Show Patient Appointments History";
-            this.showPatientHToolStripMenuItem.Click += new System.EventHandler(this.showPatientHToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -159,18 +151,36 @@
             this.lblTotalPageNumber.AutoSize = true;
             this.lblTotalPageNumber.Location = new System.Drawing.Point(221, 22);
             this.lblTotalPageNumber.Name = "lblTotalPageNumber";
-            this.lblTotalPageNumber.Size = new System.Drawing.Size(154, 16);
+            this.lblTotalPageNumber.Size = new System.Drawing.Size(158, 16);
             this.lblTotalPageNumber.TabIndex = 9;
-            this.lblTotalPageNumber.Text = "Total Pages Number:";
+            this.lblTotalPageNumber.Text = "Total Pages Number: ";
+            // 
+            // lblRecordsNumber
+            // 
+            this.lblRecordsNumber.AutoSize = true;
+            this.lblRecordsNumber.Location = new System.Drawing.Point(421, 22);
+            this.lblRecordsNumber.Name = "lblRecordsNumber";
+            this.lblRecordsNumber.Size = new System.Drawing.Size(202, 16);
+            this.lblRecordsNumber.TabIndex = 3;
+            this.lblRecordsNumber.Text = "Patients Number Per Page : ";
             // 
             // lblPageNumber
             // 
             this.lblPageNumber.AutoSize = true;
             this.lblPageNumber.Location = new System.Drawing.Point(760, 22);
             this.lblPageNumber.Name = "lblPageNumber";
-            this.lblPageNumber.Size = new System.Drawing.Size(72, 16);
+            this.lblPageNumber.Size = new System.Drawing.Size(76, 16);
             this.lblPageNumber.TabIndex = 8;
-            this.lblPageNumber.Text = "Page No:";
+            this.lblPageNumber.Text = "Page No: ";
+            // 
+            // lblTotalRecordNumber
+            // 
+            this.lblTotalRecordNumber.AutoSize = true;
+            this.lblTotalRecordNumber.Location = new System.Drawing.Point(7, 22);
+            this.lblTotalRecordNumber.Name = "lblTotalRecordNumber";
+            this.lblTotalRecordNumber.Size = new System.Drawing.Size(172, 16);
+            this.lblTotalRecordNumber.TabIndex = 7;
+            this.lblTotalRecordNumber.Text = "Total Records Number: ";
             // 
             // btnNext
             // 
@@ -201,33 +211,28 @@
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
-            // lblRecordsNumber
+            // btnClose
             // 
-            this.lblRecordsNumber.AutoSize = true;
-            this.lblRecordsNumber.Location = new System.Drawing.Point(421, 22);
-            this.lblRecordsNumber.Name = "lblRecordsNumber";
-            this.lblRecordsNumber.Size = new System.Drawing.Size(190, 16);
-            this.lblRecordsNumber.TabIndex = 3;
-            this.lblRecordsNumber.Text = "Patients Number Per Page";
-            // 
-            // lblTotalRecordNumber
-            // 
-            this.lblTotalRecordNumber.AutoSize = true;
-            this.lblTotalRecordNumber.Location = new System.Drawing.Point(7, 22);
-            this.lblTotalRecordNumber.Name = "lblTotalRecordNumber";
-            this.lblTotalRecordNumber.Size = new System.Drawing.Size(168, 16);
-            this.lblTotalRecordNumber.TabIndex = 7;
-            this.lblTotalRecordNumber.Text = "Total Records Number:";
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.Red;
+            this.btnClose.Location = new System.Drawing.Point(1037, 429);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(109, 35);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmPatientsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 425);
+            this.ClientSize = new System.Drawing.Size(1159, 476);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvPatients);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPatientsList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patients List";
@@ -248,7 +253,6 @@
         private System.Windows.Forms.ContextMenuStrip cmsPatients;
         private System.Windows.Forms.ToolStripMenuItem showPatientInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAPatientToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updatePatientInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteAPatientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPatientHToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -260,5 +264,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblTotalPageNumber;
         private System.Windows.Forms.Button btnSearchPage;
+        private System.Windows.Forms.Button btnClose;
     }
 }

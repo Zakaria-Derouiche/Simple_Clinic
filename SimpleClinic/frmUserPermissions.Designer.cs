@@ -62,7 +62,7 @@
             this.checkBoxAppointmentsCreate = new System.Windows.Forms.CheckBox();
             this.checkBoxUsersDelete = new System.Windows.Forms.CheckBox();
             this.checkBoxUsersRead = new System.Windows.Forms.CheckBox();
-            this.checkBoxUserUpdate = new System.Windows.Forms.CheckBox();
+            this.checkBoxUsersUpdate = new System.Windows.Forms.CheckBox();
             this.checkBoxUsersCreate = new System.Windows.Forms.CheckBox();
             this.checkBoxDoctorsDelete = new System.Windows.Forms.CheckBox();
             this.checkBoxDoctorsRead = new System.Windows.Forms.CheckBox();
@@ -80,8 +80,8 @@
             this.checkBoxMedicalRecordsRead = new System.Windows.Forms.CheckBox();
             this.checkBoxMedicalRecordsUpdate = new System.Windows.Forms.CheckBox();
             this.checkBoxMedicalRecordsCreate = new System.Windows.Forms.CheckBox();
-            this.checkBoxAppointmentsOperations = new System.Windows.Forms.CheckBox();
-            this.checkBoxPeopleOperations = new System.Windows.Forms.CheckBox();
+            this.checkBoxAppointmentsOperationsRead = new System.Windows.Forms.CheckBox();
+            this.checkBoxOperationsRead = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -431,15 +431,15 @@
             this.checkBoxUsersRead.TabIndex = 34;
             this.checkBoxUsersRead.UseVisualStyleBackColor = true;
             // 
-            // checkBoxUserUpdate
+            // checkBoxUsersUpdate
             // 
-            this.checkBoxUserUpdate.AutoSize = true;
-            this.checkBoxUserUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxUserUpdate.Location = new System.Drawing.Point(371, 209);
-            this.checkBoxUserUpdate.Name = "checkBoxUserUpdate";
-            this.checkBoxUserUpdate.Size = new System.Drawing.Size(18, 17);
-            this.checkBoxUserUpdate.TabIndex = 33;
-            this.checkBoxUserUpdate.UseVisualStyleBackColor = true;
+            this.checkBoxUsersUpdate.AutoSize = true;
+            this.checkBoxUsersUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxUsersUpdate.Location = new System.Drawing.Point(371, 209);
+            this.checkBoxUsersUpdate.Name = "checkBoxUsersUpdate";
+            this.checkBoxUsersUpdate.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxUsersUpdate.TabIndex = 33;
+            this.checkBoxUsersUpdate.UseVisualStyleBackColor = true;
             // 
             // checkBoxUsersCreate
             // 
@@ -611,25 +611,25 @@
             this.checkBoxMedicalRecordsCreate.TabIndex = 40;
             this.checkBoxMedicalRecordsCreate.UseVisualStyleBackColor = true;
             // 
-            // checkBoxAppointmentsOperations
+            // checkBoxAppointmentsOperationsRead
             // 
-            this.checkBoxAppointmentsOperations.AutoSize = true;
-            this.checkBoxAppointmentsOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAppointmentsOperations.Location = new System.Drawing.Point(472, 442);
-            this.checkBoxAppointmentsOperations.Name = "checkBoxAppointmentsOperations";
-            this.checkBoxAppointmentsOperations.Size = new System.Drawing.Size(18, 17);
-            this.checkBoxAppointmentsOperations.TabIndex = 58;
-            this.checkBoxAppointmentsOperations.UseVisualStyleBackColor = true;
+            this.checkBoxAppointmentsOperationsRead.AutoSize = true;
+            this.checkBoxAppointmentsOperationsRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAppointmentsOperationsRead.Location = new System.Drawing.Point(472, 442);
+            this.checkBoxAppointmentsOperationsRead.Name = "checkBoxAppointmentsOperationsRead";
+            this.checkBoxAppointmentsOperationsRead.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxAppointmentsOperationsRead.TabIndex = 58;
+            this.checkBoxAppointmentsOperationsRead.UseVisualStyleBackColor = true;
             // 
-            // checkBoxPeopleOperations
+            // checkBoxOperationsRead
             // 
-            this.checkBoxPeopleOperations.AutoSize = true;
-            this.checkBoxPeopleOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxPeopleOperations.Location = new System.Drawing.Point(472, 404);
-            this.checkBoxPeopleOperations.Name = "checkBoxPeopleOperations";
-            this.checkBoxPeopleOperations.Size = new System.Drawing.Size(18, 17);
-            this.checkBoxPeopleOperations.TabIndex = 54;
-            this.checkBoxPeopleOperations.UseVisualStyleBackColor = true;
+            this.checkBoxOperationsRead.AutoSize = true;
+            this.checkBoxOperationsRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxOperationsRead.Location = new System.Drawing.Point(472, 404);
+            this.checkBoxOperationsRead.Name = "checkBoxOperationsRead";
+            this.checkBoxOperationsRead.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxOperationsRead.TabIndex = 54;
+            this.checkBoxOperationsRead.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
@@ -660,12 +660,12 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.checkBoxAppointmentsOperations);
+            this.groupBox1.Controls.Add(this.checkBoxAppointmentsOperationsRead);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.checkBoxPeopleOperations);
+            this.groupBox1.Controls.Add(this.checkBoxOperationsRead);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label11);
@@ -705,7 +705,7 @@
             this.groupBox1.Controls.Add(this.checkBoxDoctorsUpdate);
             this.groupBox1.Controls.Add(this.checkBoxUsersRead);
             this.groupBox1.Controls.Add(this.checkBoxDoctorsRead);
-            this.groupBox1.Controls.Add(this.checkBoxUserUpdate);
+            this.groupBox1.Controls.Add(this.checkBoxUsersUpdate);
             this.groupBox1.Controls.Add(this.checkBoxDoctorsDelete);
             this.groupBox1.Controls.Add(this.checkBoxUsersCreate);
             this.groupBox1.Location = new System.Drawing.Point(15, 54);
@@ -735,6 +735,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label17);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmUserPermissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUserPermissions";
@@ -782,7 +783,7 @@
         private System.Windows.Forms.CheckBox checkBoxAppointmentsCreate;
         private System.Windows.Forms.CheckBox checkBoxUsersDelete;
         private System.Windows.Forms.CheckBox checkBoxUsersRead;
-        private System.Windows.Forms.CheckBox checkBoxUserUpdate;
+        private System.Windows.Forms.CheckBox checkBoxUsersUpdate;
         private System.Windows.Forms.CheckBox checkBoxUsersCreate;
         private System.Windows.Forms.CheckBox checkBoxDoctorsDelete;
         private System.Windows.Forms.CheckBox checkBoxDoctorsRead;
@@ -800,8 +801,8 @@
         private System.Windows.Forms.CheckBox checkBoxMedicalRecordsRead;
         private System.Windows.Forms.CheckBox checkBoxMedicalRecordsUpdate;
         private System.Windows.Forms.CheckBox checkBoxMedicalRecordsCreate;
-        private System.Windows.Forms.CheckBox checkBoxAppointmentsOperations;
-        private System.Windows.Forms.CheckBox checkBoxPeopleOperations;
+        private System.Windows.Forms.CheckBox checkBoxAppointmentsOperationsRead;
+        private System.Windows.Forms.CheckBox checkBoxOperationsRead;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox1;

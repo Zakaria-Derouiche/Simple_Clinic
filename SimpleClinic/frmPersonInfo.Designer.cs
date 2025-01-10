@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPersonInfo1 = new SimpleClinic.ctrlPersonInfo();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlPersonInfo1 = new SimpleClinic.ctrlPersonInfo();
             this.SuspendLayout();
-            // 
-            // ctrlPersonInfo1
-            // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(30, 59);
-            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.Size = new System.Drawing.Size(749, 247);
-            this.ctrlPersonInfo1.TabIndex = 0;
             // 
             // label1
             // 
@@ -63,6 +56,13 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ctrlPersonInfo1
+            // 
+            this.ctrlPersonInfo1.Location = new System.Drawing.Point(30, 59);
+            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
+            this.ctrlPersonInfo1.Size = new System.Drawing.Size(749, 247);
+            this.ctrlPersonInfo1.TabIndex = 0;
+            // 
             // frmPersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -71,7 +71,9 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ctrlPersonInfo1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPersonInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPersonInfo";
             this.Load += new System.EventHandler(this.frmPersonInfo_Load);
             this.ResumeLayout(false);

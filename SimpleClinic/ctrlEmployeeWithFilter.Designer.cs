@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.gBoxFind = new System.Windows.Forms.GroupBox();
+            this.ctrlEmployeeInfo1 = new SimpleClinic.ctrlEmployeeInfo();
             this.linkLblPersonInfo = new System.Windows.Forms.LinkLabel();
             this.txtBoxFilter = new System.Windows.Forms.TextBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
-            this.ctrlEmployeeInfo1 = new SimpleClinic.ctrlEmployeeInfo();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.gBoxFind.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,13 @@
             this.gBoxFind.TabIndex = 1;
             this.gBoxFind.TabStop = false;
             this.gBoxFind.Text = "Employee Info";
+            // 
+            // ctrlEmployeeInfo1
+            // 
+            this.ctrlEmployeeInfo1.Location = new System.Drawing.Point(10, 21);
+            this.ctrlEmployeeInfo1.Name = "ctrlEmployeeInfo1";
+            this.ctrlEmployeeInfo1.Size = new System.Drawing.Size(796, 180);
+            this.ctrlEmployeeInfo1.TabIndex = 4;
             // 
             // linkLblPersonInfo
             // 
@@ -62,12 +70,13 @@
             // 
             // txtBoxFilter
             // 
-            this.txtBoxFilter.Location = new System.Drawing.Point(206, 16);
+            this.txtBoxFilter.Location = new System.Drawing.Point(228, 16);
             this.txtBoxFilter.MaxLength = 10;
             this.txtBoxFilter.Name = "txtBoxFilter";
             this.txtBoxFilter.Size = new System.Drawing.Size(100, 22);
             this.txtBoxFilter.TabIndex = 6;
             this.txtBoxFilter.TextChanged += new System.EventHandler(this.txtBoxFilter_TextChanged);
+            this.txtBoxFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxFilter_KeyPress_1);
             // 
             // lblFilter
             // 
@@ -83,7 +92,7 @@
             // 
             this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFind.ForeColor = System.Drawing.Color.Green;
-            this.btnFind.Location = new System.Drawing.Point(340, 7);
+            this.btnFind.Location = new System.Drawing.Point(374, 7);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(119, 40);
             this.btnFind.TabIndex = 4;
@@ -91,17 +100,23 @@
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
-            // ctrlEmployeeInfo1
+            // btnAdd
             // 
-            this.ctrlEmployeeInfo1.Location = new System.Drawing.Point(10, 21);
-            this.ctrlEmployeeInfo1.Name = "ctrlEmployeeInfo1";
-            this.ctrlEmployeeInfo1.Size = new System.Drawing.Size(796, 180);
-            this.ctrlEmployeeInfo1.TabIndex = 4;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.btnAdd.Location = new System.Drawing.Point(539, 7);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(213, 40);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Add New Employee";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // ctrlEmployeeWithFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtBoxFilter);
             this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.btnFind);
@@ -122,5 +137,6 @@
         private System.Windows.Forms.TextBox txtBoxFilter;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

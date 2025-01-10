@@ -14,6 +14,7 @@ namespace ClinicBusiness
     public class clsPatient : clsPerson
     {
         private enum enMode { Add = 1, Edit = 2}
+
         private enMode _Mode;
         public int PatientID { set; get; }
         public clsPatient() : base() 
@@ -21,22 +22,63 @@ namespace ClinicBusiness
             PatientID = -1;
             _Mode = enMode.Add;
         }
-        private clsPatient(int ID, string NationalNumber, string FirstName , string MidlleName, string LastName, DateTime BirthDate,
-            bool Gender, string Phone, string Email, string Address, byte CountryID, int PatientID, bool IsDeleted) :
-            base (ID, NationalNumber,FirstName , MidlleName, LastName, BirthDate, Gender, Phone, Email, Address, CountryID)
+
+        public clsPatient(clsPerson Person)
         {
+            ID = Person.ID;
+            NationalNumber = Person.NationalNumber;
+            FirstName = Person.FirstName;
+            MidlleName = Person.MidlleName;
+            LastName = Person.LastName;
+            BirthDate = Person.BirthDate;
+            Gender = Person.Gender;
+            Phone = Person.Phone;
+            Email = Person.Email;
+            Address = Person.Address;
+            CountryID = Person.CountryID;
+
+            this.PatientID = -1;
+            _Mode = enMode.Add;
+        }
+
+        private clsPatient(clsPerson Person, int PatientID) 
+        {
+            ID = Person.ID;
+            NationalNumber = Person.NationalNumber;
+            FirstName = Person.FirstName;
+            MidlleName = Person.MidlleName;
+            LastName = Person.LastName;
+            BirthDate = Person.BirthDate;
+            Gender = Person.Gender;
+            Phone = Person.Phone;
+            Email = Person.Email;
+            Address = Person.Address;
+            CountryID = Person.CountryID;
+
             this.PatientID = PatientID;
             _Mode = enMode.Edit;
         }
+
         public static clsPatient GetPatientInfoByID (int PatientID, ref string ErrorMessage)
         {
             int personID = -1;
             if(clsPatientData.GetPatientInfo(PatientID, ref personID, ref ErrorMessage))
             {
-                clsPatient Patient = (clsPatient)clsPatient.GetPersonInfoByID(personID, ref ErrorMessage);
-                Patient.PatientID = PatientID;
-                return Patient;
+                return new clsPatient(clsPerson.GetPersonInfoByID(personID, ref ErrorMessage), PatientID);
             }else
+            {
+                return null;
+            }
+        }
+
+        public static clsPatient GetPatientInfoByPersonID(int PersonID, ref string ErrorMessage)
+        {
+            int PatientID = -1;
+            if (clsPatientData.GetPatientInfoByPersonID(PersonID, ref PatientID, ref ErrorMessage))
+            {
+                return new clsPatient(clsPerson.GetPersonInfoByID(PersonID, ref ErrorMessage), PatientID);
+            }
+            else
             {
                 return null;
             }
@@ -70,6 +112,8 @@ namespace ClinicBusiness
         {
             return clsPatientData.IsPatientExistByNationalNumber(NationalNumber, ref ErrroMessage);
         }
+
+        
         public static DataTable GetSetOfPatientsData(int PageNumber, int RowsPerPage, ref string ErrorMessage)
         {
             DataTable dtEncryptedPatients = clsPatientData.GetPatientsPerPage(PageNumber, RowsPerPage, ref ErrorMessage);

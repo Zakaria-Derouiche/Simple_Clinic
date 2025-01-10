@@ -199,6 +199,44 @@ namespace ClinicDataAccess
             }
             return IsFound;
         }
+        public static bool GetPatientInfoByPersonID(int PersonID, ref int PatientID, ref string ErrorMessage)
+        {
+            bool IsFound = false;
+            try
+            {
+                using (SqlConnection Connection = new SqlConnection(clsDataAccessSettings.ConnectionsString))
+                {
+                    using (SqlCommand Command = new SqlCommand("SP_GetPatientInfoByPersonID", Connection))
+                    {
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@PersonID", PersonID);
+                        SqlParameter PatientIDOutputParameter = new SqlParameter("@PatientID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(PatientIDOutputParameter);
+                        SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsFoundOutputParameter);
+                        Connection.Open();
+                        Command.ExecuteNonQuery();
+                        IsFound = (bool)Command.Parameters["@IsFound"].Value;
+                        if (IsFound)
+                        {
+                            PatientID = (int)Command.Parameters["@PatientID"].Value;
+                        }
+                        Connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            return IsFound;
+        }
         public static DataTable GetPatientsPerPage(int PageNumber,int NumberOfPatiensPerPage, ref string ErrorMessage)
         {
             DataTable dtPatients = new DataTable();

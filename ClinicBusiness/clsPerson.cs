@@ -12,6 +12,7 @@ namespace ClinicBusiness
     public class clsPerson
     {
         private enum enMode { Add = 1, Edit = 2 }
+
         private enMode _Mode;
         public int ID { set; get; }
         public string NationalNumber { set; get; }
@@ -54,7 +55,7 @@ namespace ClinicBusiness
             CountryID = 3;
             _Mode = enMode.Add;
         }
-        public clsPerson(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
+        private clsPerson(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
             bool Gender, string Phone, string Email, string Address, byte CountryID)
         {
             this.ID = ID;
@@ -70,17 +71,7 @@ namespace ClinicBusiness
             this.CountryID = CountryID;
             _Mode = enMode.Edit;
         }
-        private static void DecryptPersonInfo(ref string nationalNumber, ref string firstName, ref string midlleName, ref string lastName,
-        ref string phone, ref string email, ref string address)
-        {
-            nationalNumber = clsEncryptionDecryption.Decrypt(nationalNumber);
-            firstName = clsEncryptionDecryption.Decrypt(firstName);
-            midlleName = midlleName == string.Empty ? "" : clsEncryptionDecryption.Decrypt(midlleName);
-            lastName = clsEncryptionDecryption.Decrypt(lastName);
-            phone = clsEncryptionDecryption.Decrypt(phone);
-            email = clsEncryptionDecryption.Decrypt(email);
-            address = clsEncryptionDecryption.Decrypt(address);
-        }
+       
         public static clsPerson GetPersonInfoByID(int ID, ref string ErrorMessage)
         {
             string nationalNumber = string.Empty;
@@ -96,9 +87,13 @@ namespace ClinicBusiness
             if (clsPersonData.GetPersonInfoByID(ID, ref nationalNumber, ref firstName, ref midleName, ref lastName, ref birthDate, ref gender,
                 ref phone, ref email, ref address, ref countryID, ref ErrorMessage))
             {
-                DecryptPersonInfo(ref nationalNumber, ref firstName, ref midleName, ref lastName, ref phone, ref email, ref address);
-                return new clsPerson(ID, nationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
+
+                clsPerson Person = new clsPerson(ID, nationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
                     address, countryID);
+
+                clsEncryptionDecryption.DecryptPersonInfo(ref Person);
+
+                return Person;
             }
             else
             {
@@ -120,9 +115,12 @@ namespace ClinicBusiness
             if (clsPersonData.GetPersonInfoByNationalNumber(NationalNumber, ref iD, ref firstName, ref midleName, ref lastName,
                 ref birthDate, ref gender, ref phone, ref email, ref address, ref countryID, ref ErrorMessage))
             {
-                DecryptPersonInfo(ref NationalNumber, ref firstName, ref midleName, ref lastName, ref phone, ref email, ref address);
-                return new clsPerson(iD, NationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
+                clsPerson Person = new clsPerson(iD, NationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
                     address, countryID);
+
+                clsEncryptionDecryption.DecryptPersonInfo(ref Person);
+
+                return Person;
             }
             else
             {
@@ -142,12 +140,16 @@ namespace ClinicBusiness
             string email = string.Empty;
             string address = string.Empty;
             byte countryID = 213;
+
             if (clsPersonData.GetPersonInfoByFullName(FullName, ref iD, ref nationalNumber, ref firstName, ref midleName,
                 ref lastName, ref birthDate, ref gender, ref phone, ref email, ref address, ref countryID, ref ErrorMessage))
             {
-                DecryptPersonInfo(ref nationalNumber, ref firstName, ref midleName, ref lastName, ref phone, ref email, ref address);
-                return new clsPerson(iD, nationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
+                clsPerson Person = new clsPerson(iD, nationalNumber, firstName, midleName, lastName, birthDate, gender, phone, email,
                     address, countryID);
+
+                clsEncryptionDecryption.DecryptPersonInfo(ref Person);
+
+                return Person;
             }
             else
             {

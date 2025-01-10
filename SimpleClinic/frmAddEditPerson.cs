@@ -13,8 +13,13 @@ namespace SimpleClinic
 {
     public partial class frmAddEditPerson : Form
     {
+        private Form _Sender;
 
-       
+        public event EventHandler<clsPerson> PersonAddedOrUpdated;
+        private void _RaiseEvent()
+        {
+            PersonAddedOrUpdated?.Invoke(this, _Person);
+        }
 
         private string _NationalNumber = string.Empty;
 
@@ -22,22 +27,49 @@ namespace SimpleClinic
 
         private Dictionary<string, string> dicCountries = new Dictionary<string, string>();
 
+        private bool _IsChanged = false;
+
         private enum enMode { Add, Edit}
 
         private enMode _Mode;
-        public frmAddEditPerson(int PersonID = -1)
+        public frmAddEditPerson(int PersonID = -1, Form sender = null)
         {
             InitializeComponent();
+
+            _Sender = sender;
 
             dicCountries = clsCountry.GetAllCountries();
 
             _Person = clsPerson.GetPersonInfoByID(PersonID, ref clsGlobal.ErrorMessage);
 
             _Mode = _Person == null || _Person.ID < 1 ? enMode.Add : enMode.Edit; 
+
+            if(_Mode == enMode.Edit)
+                clsEncryptionDecryption.DecryptPersonInfo(ref _Person);
+
         }
-        public frmAddEditPerson(string NationalNumber = "")
+
+        public frmAddEditPerson(clsPerson Person, Form sender = null)
         {
             InitializeComponent();
+
+            _Sender = sender;
+
+            dicCountries = clsCountry.GetAllCountries();
+
+            _Person = Person;
+
+            _Mode = _Person == null || _Person.ID < 1 ? enMode.Add : enMode.Edit;
+
+            _LoadPersonInfo();
+
+        }
+
+        public frmAddEditPerson(string NationalNumber = "", Form sender = null)
+        {
+            InitializeComponent();
+
+            _Sender = sender;
 
             dicCountries = clsCountry.GetAllCountries();
 
@@ -48,8 +80,7 @@ namespace SimpleClinic
         private void frmAddEditPerson_Load(object sender, EventArgs e)
         {
             _LoadPersonInfo();
-        }
-       
+        }      
         private void _LoadPersonInfo()
         {
             lblTitle.Text = _Person == null || _Person.ID == -1 ? "Add New Patient" : "Edit Patient Data";
@@ -84,8 +115,9 @@ namespace SimpleClinic
             comBoxNationality.SelectedIndex = _Person == null || _Person.ID == -1 ? 2 : _Person.CountryID - 1;
 
             txtBoxAddress.Text = _Person == null || _Person.ID == -1 ? "" : _Person.Address;
-        }
-       
+
+            btnSave.Enabled = _Person != null && _Person.ID != -1;
+        }     
         private void TextBoxKey_Press(object sender, KeyPressEventArgs e)
         {
             sender = (TextBox)sender;
@@ -208,9 +240,12 @@ namespace SimpleClinic
         private void _AddNewPerson()
         {
             _Person = new clsPerson();
+
             _FillPersonData();
 
             bool IsSaved = _Person.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
+
+            _IsChanged = IsSaved;
 
             lblPersonID.Text = IsSaved ? "N/A" : _Person.ID.ToString();
 
@@ -227,6 +262,8 @@ namespace SimpleClinic
             _FillPersonData();
 
             bool IsSaved = _Person.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
+
+            _IsChanged = IsSaved;
 
             string Message = IsSaved ? "Successfull Save Operation" : clsGlobal.ErrorMessage;
 
@@ -255,6 +292,16 @@ namespace SimpleClinic
         }   
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if(_IsChanged)
+            {
+                clsEncryptionDecryption.DecryptPersonInfo(ref _Person);
+
+                _RaiseEvent();
+            }
+              
+            if (_Sender != null)
+                _Sender.Show();
+
             this.Close();
         }
     }

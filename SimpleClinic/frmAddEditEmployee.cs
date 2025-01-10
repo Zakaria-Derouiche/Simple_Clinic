@@ -16,27 +16,35 @@ namespace SimpleClinic
 {
     public partial class frmAddEditEmployee : Form
     {
+
+        public event EventHandler<clsEmployee> EmployeeAdded;
+
+        Form _Sender;
         private enum enMode { Add, Edit}
 
         private enMode _Mode;
 
         private bool _IsPictureChanged = false;
+
         private string _DisplayedPersonImage {  get; set; }
 
         private clsEmployee _Employee = new clsEmployee(); 
 
         private void Raise(object sender, EventArgs e)
         {
-            lblPersonID.Text = ctrlPersonWithFilter1.Person.ID.ToString();
+            lblPersonID.Text = ctrlPersonWithFilter1.Person == null || ctrlPersonWithFilter1.Person.ID < 1 ? "" :
 
-             _Employee = clsEmployee.GetEmployeeInfoByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage);
+                ctrlPersonWithFilter1.Person.ToString();
 
-           
+             _Employee = ctrlPersonWithFilter1.Person == null || ctrlPersonWithFilter1.Person.ID < 1 ? null :
+                clsEmployee.GetEmployeeInfoByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage);
+  
             _CheckEmployee();
 
             _LoadEmployeeInfo();
         }
-        public frmAddEditEmployee(int EmployeeID)
+
+        public frmAddEditEmployee(int EmployeeID, Form Sender = null)
         {
             InitializeComponent();
 
@@ -46,7 +54,10 @@ namespace SimpleClinic
             _Mode = _Employee == null || _Employee.EmployeeID <= 0 ? enMode.Add : enMode.Edit;
 
             ctrlPersonWithFilter1.PersonSelected += Raise;
+
+            _Sender = Sender;
         }
+
         private void _CheckEmployee()
         {
             if (_Employee == null || _Employee.EmployeeID < 1)
@@ -58,6 +69,7 @@ namespace SimpleClinic
                 _Mode = enMode.Edit;
 
         }
+
         private void frmAddEditEmployee_Load(object sender, EventArgs e)
         {
             _CheckEmployee();
@@ -72,7 +84,6 @@ namespace SimpleClinic
         private void _LoadEmployeeInfo()
         {
             
-
             lblEmployeeID.Text = _Mode == enMode.Add ? "[???]" : _Employee.EmployeeID.ToString();
             
             lblPersonID.Text = ctrlPersonWithFilter1.Person == null || ctrlPersonWithFilter1.Person.ID == -1 ?"[???]" :
@@ -96,7 +107,6 @@ namespace SimpleClinic
             lblTitle.Text = _Mode == enMode.Add ? "Add New Employee" : "Update Employee Info";
 
             lblTitle.Location = new Point((this.Size.Width /2) - (lblTitle.Size.Width / 2), 9);
-           
 
             linkLblAddImage.Text = _Employee == null || _Employee.EmployeeID == -1 || _Employee.ImagePath == string.Empty ?
                "Add Image" : "Change Image";
@@ -117,7 +127,7 @@ namespace SimpleClinic
 
             rbFired.Enabled = _Mode == enMode.Edit;
 
-            gboxEmployeeInfo.Enabled = _Mode == enMode.Edit;
+            
 
         }
 
@@ -136,13 +146,17 @@ namespace SimpleClinic
         private void _FillEmployeeInfo()
         {
             _Employee.HireDate = dtpHireDate.Value;
+
             _Employee.HireDate = _Employee.HireDate == dtpHireDate.Value ? _Employee.HireDate : dtpHireDate.Value;
+
             _Employee.EndDate = dtpHireDate.Enabled ? dtpEndDate.Value : _Employee.EndDate;
+
             _Employee.ReasonOfLeaving = txtBoxReasonOfLeaving.Text;
+
             _Employee.TypeOfLeaving = rbFired.Enabled ? rbFired.Checked || rbResigned.Checked : _Employee.TypeOfLeaving;
+
             _ProccessImage();
         }        
-  
         private void btnSave_Click(object sender, EventArgs e)
         {
             _Employee = new clsEmployee();
@@ -160,11 +174,12 @@ namespace SimpleClinic
             }
             _FillEmployeeInfo();
            
-            bool IsSaved = _Employee.Save(1, ref clsGlobal.ErrorMessage);
+            bool IsSaved = _Employee.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
             if (IsSaved)
             {
                 MessageBox.Show("Employee Information Has Saved Successfully", "Info", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
                 _IsPictureChanged = false;
             }
             else 
@@ -231,23 +246,37 @@ namespace SimpleClinic
         {
             if (dtpHireDate.Enabled)
             {
-                dtpHireDate.Value = _Employee == null || _Employee.EmployeeID == -1 ? DateTime.Now : _Employee.HireDate;
                 dtpHireDate.MaxDate = DateTime.Now;
+
+                dtpHireDate.Value = _Employee == null || _Employee.EmployeeID == -1 ? DateTime.Now : _Employee.HireDate;
+               
             }              
         }
         private void dtpEndDate_EnabledChanged(object sender, EventArgs e)
         {
             if(dtpEndDate.Enabled)
             {
-                dtpEndDate.Value = _Employee == null || _Employee.EmployeeID == -1 || !_Employee.EndDate.HasValue?
-               DateTime.Now : _Employee.EndDate.Value;
                 dtpEndDate.MaxDate = DateTime.Now;
+
+                dtpEndDate.Value = _Employee == null || _Employee.EmployeeID == -1 || !_Employee.EndDate.HasValue?
+
+               DateTime.Now : _Employee.EndDate.Value;
+
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             clsUtil.DeleteFile(_DisplayedPersonImage);
+
             _DisplayedPersonImage = string.Empty;
+
+            if(_Employee != null && _Employee.EmployeeID > 0)
+                
+                EmployeeAdded?.Invoke(this, _Employee);
+
+           
+            _Sender.Show();
+
             this.Close();
         }
     }

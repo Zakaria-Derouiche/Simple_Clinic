@@ -47,11 +47,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsUtil.cs" />
+    <Compile Include="ctrlDoctorInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlDoctorInfo.Designer.cs">
+      <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlDoctorInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlDoctorInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlDoctorInfoWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrlEmployeeWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ctrlEmployeeWithFilter.Designer.cs">
       <DependentUpon>ctrlEmployeeWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlPatientInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlPatientInfo.Designer.cs">
+      <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlPatientInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlPatientInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlPatientInfoWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlUserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlUserInfo.Designer.cs">
+      <DependentUpon>ctrlUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlUserInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlUserInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlUserInfoWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddEditDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditDoctor.Designer.cs">
+      <DependentUpon>frmAddEditDoctor.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAddEditEmployee.cs">
       <SubType>Form</SubType>
@@ -79,6 +121,12 @@
     <Compile Include="ctrlPersonWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddEditPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddEditPatient.Designer.cs">
+      <DependentUpon>frmAddEditPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +138,30 @@
     </Compile>
     <Compile Include="frmAddEditUser.Designer.cs">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDoctorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoctorInfo.Designer.cs">
+      <DependentUpon>frmDoctorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindDoctor.Designer.cs">
+      <DependentUpon>frmFindDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmployeeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmployeeInfo.Designer.cs">
+      <DependentUpon>frmEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindPerson.Designer.cs">
+      <DependentUpon>frmFindPerson.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -103,17 +175,47 @@
     <Compile Include="frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFindPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindPatient.Designer.cs">
+      <DependentUpon>frmFindPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPatientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPatientInfo.Designer.cs">
+      <DependentUpon>frmPatientInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPatientsList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPatientsList.Designer.cs">
       <DependentUpon>frmPatientsList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPeopleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPeopleList.Designer.cs">
+      <DependentUpon>frmPeopleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPersonInfo.Designer.cs">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFindUser.Designer.cs">
+      <DependentUpon>frmFindUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserInfo.Designer.cs">
+      <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUserPermissions.cs">
       <SubType>Form</SubType>
@@ -123,8 +225,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctrlDoctorInfo.resx">
+      <DependentUpon>ctrlDoctorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlDoctorInfoWithFilter.resx">
+      <DependentUpon>ctrlDoctorInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrlEmployeeWithFilter.resx">
       <DependentUpon>ctrlEmployeeWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlPatientInfo.resx">
+      <DependentUpon>ctrlPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlPatientInfoWithFilter.resx">
+      <DependentUpon>ctrlPatientInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlUserInfo.resx">
+      <DependentUpon>ctrlUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlUserInfoWithFilter.resx">
+      <DependentUpon>ctrlUserInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditDoctor.resx">
+      <DependentUpon>frmAddEditDoctor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditEmployee.resx">
       <DependentUpon>frmAddEditEmployee.cs</DependentUpon>
@@ -138,11 +261,26 @@
     <EmbeddedResource Include="ctrlPersonWithFilter.resx">
       <DependentUpon>ctrlPersonWithFilter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddEditPatient.resx">
+      <DependentUpon>frmAddEditPatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditPerson.resx">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoctorInfo.resx">
+      <DependentUpon>frmDoctorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindDoctor.resx">
+      <DependentUpon>frmFindDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmployeeInfo.resx">
+      <DependentUpon>frmEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindPerson.resx">
+      <DependentUpon>frmFindPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -150,11 +288,26 @@
     <EmbeddedResource Include="frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFindPatient.resx">
+      <DependentUpon>frmFindPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPatientInfo.resx">
+      <DependentUpon>frmPatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPatientsList.resx">
       <DependentUpon>frmPatientsList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPeopleList.resx">
+      <DependentUpon>frmPeopleList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPersonInfo.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindUser.resx">
+      <DependentUpon>frmFindUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserInfo.resx">
+      <DependentUpon>frmUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserPermissions.resx">
       <DependentUpon>frmUserPermissions.cs</DependentUpon>
@@ -169,6 +322,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -200,6 +354,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HidePassword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\th-3441742912.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

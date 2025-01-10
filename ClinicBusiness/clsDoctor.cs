@@ -13,6 +13,7 @@ namespace ClinicBusiness
     public class clsDoctor : clsEmployee
     {
         private enum enMode { Add, Edit }
+
         private enMode _Mode;
         public int DoctorID { get; set; }
         public string Specialization { get; set; }
@@ -21,15 +22,54 @@ namespace ClinicBusiness
             DoctorID = -1;
             Specialization = string.Empty;
         }
-        private clsDoctor(int ID, string NationalNumber, string FirstName, string MidlleName, string LastName, DateTime BirthDate,
-            bool Gender, string Phone, string Email, string Address, byte CountryID, int EmployeeID, string ImagePath,
-            DateTime HireDtae, DateTime EndDate, bool TypeOfLeaving, string ReasonOfLeaving, int DoctorID, 
-            string Specialization) :
-            base(ID, NationalNumber, FirstName, MidlleName, LastName, BirthDate,Gender,  Phone, Email, Address, CountryID,
-                EmployeeID, ImagePath, HireDtae, EndDate, TypeOfLeaving, ReasonOfLeaving)
+
+        public clsDoctor(clsEmployee Employee)
         {
+            ID = Employee.ID;
+            NationalNumber = Employee.NationalNumber;
+            FirstName = Employee.FirstName;
+            MidlleName = Employee.MidlleName;
+            LastName = Employee.LastName;
+            BirthDate = Employee.BirthDate;
+            Gender = Employee.Gender;
+            Phone = Employee.Phone;
+            Email = Employee.Email;
+            Address = Employee.Address;
+            CountryID = Employee.CountryID;
+            EmployeeID = Employee.EmployeeID;
+            ImagePath = Employee.ImagePath;
+            HireDate = Employee.HireDate;
+            EndDate = Employee.EndDate;
+            TypeOfLeaving = Employee.TypeOfLeaving;
+            ReasonOfLeaving = Employee.ReasonOfLeaving;
+
+            DoctorID = -1;
+            Specialization = "";
+            _Mode = enMode.Add;
+        }
+        private clsDoctor(clsEmployee Employee, int DoctorID,  string Specialization) 
+        {
+            ID = Employee.ID;
+            NationalNumber = Employee.NationalNumber;
+            FirstName = Employee.FirstName;
+            MidlleName = Employee.MidlleName;
+            LastName = Employee.LastName;
+            BirthDate = Employee.BirthDate;
+            Gender = Employee.Gender;
+            Phone = Employee.Phone;
+            Email = Employee.Email;
+            Address = Employee.Address;
+            CountryID = Employee.CountryID;
+            EmployeeID = Employee.EmployeeID;
+            ImagePath = Employee.ImagePath;
+            HireDate = Employee.HireDate;
+            EndDate = Employee.EndDate; 
+            TypeOfLeaving = Employee.TypeOfLeaving;
+            ReasonOfLeaving = Employee.ReasonOfLeaving;
+
             this.DoctorID = DoctorID;
             this.Specialization = Specialization;
+            _Mode = enMode.Edit;
         }
 
         public static clsDoctor GetDoctorInfoByID(int DoctorID, ref string ErrorMessage)
@@ -38,10 +78,23 @@ namespace ClinicBusiness
             string specilaization = string.Empty;
             if (clsDoctorData.GetDoctorInfo(DoctorID, ref employeeID, ref specilaization, ref ErrorMessage))
             {
-                clsDoctor Doctor = (clsDoctor)clsDoctor.GetEmployeeInfoByID(employeeID, ref ErrorMessage);
-                Doctor.DoctorID = DoctorID;
-                Doctor.Specialization = specilaization;
-                return Doctor;
+                return new clsDoctor(clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage), DoctorID, specilaization);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static clsDoctor GetDoctorInfoByEmployeeID(int EmployeeID, ref string ErrorMessage)
+        {
+            int DoctorID = -1;
+
+            string specilaization = string.Empty;
+
+            if (clsDoctorData.GetDoctorInfoByEmployeeID(EmployeeID, ref DoctorID, ref specilaization, ref ErrorMessage))
+            {
+                return new clsDoctor(clsEmployee.GetEmployeeInfoByID(EmployeeID, ref ErrorMessage), DoctorID, specilaization);
             }
             else
             {

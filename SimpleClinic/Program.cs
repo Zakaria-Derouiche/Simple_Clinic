@@ -17,7 +17,7 @@ namespace SimpleClinic
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new frmAddEditUser(-1));
+            Application.Run(new frmLogin());
         }
     }
 }
