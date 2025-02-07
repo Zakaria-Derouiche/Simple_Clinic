@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsAppointmentData.cs" />
     <Compile Include="clsCountryData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsDoctorData.cs" />
     <Compile Include="clsEmployeeData.cs" />
+    <Compile Include="clsMedicalRecordData.cs" />
     <Compile Include="clsPatientData.cs" />
+    <Compile Include="clsPaymentsData.cs" />
     <Compile Include="clsPersonData.cs" />
+    <Compile Include="clsPrescriptionData.cs" />
     <Compile Include="clsUserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -13,10 +13,13 @@ namespace SimpleClinic
 {
     public partial class frmFindUser : Form
     {
+        Form _Sender;
         
-        public frmFindUser()
+        public frmFindUser(Form Sender = null)
         {
             InitializeComponent();
+
+            _Sender = Sender;
         }
 
         private void frmFindUser_Load(object sender, EventArgs e)
@@ -26,7 +29,11 @@ namespace SimpleClinic
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            _Sender.Show();
+
             this.Close();
+
+
         }
     }
 }

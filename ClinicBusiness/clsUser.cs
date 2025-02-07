@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using ClinicBusiness;
+using System.Runtime.CompilerServices;
 
 namespace ClinicBusiness
 {
@@ -18,12 +19,15 @@ namespace ClinicBusiness
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Permission { get; set; }
+
+        public bool IsActive { get; set; }
         public clsUser() : base()
         {
             UserID = -1;
             UserName = string.Empty;
             Password = string.Empty;
             Permission = string.Empty;
+            IsActive = false;
         }
 
 
@@ -50,11 +54,11 @@ namespace ClinicBusiness
             this.UserName = "";
             this.Password = "";
             this.Permission = "";
-
+            this.IsActive = false;
             _Mode = enMode.Add;
         }
 
-        private clsUser(clsEmployee Employee, int UserID, string UserName, string Password, string Permission) 
+        private clsUser(clsEmployee Employee, int UserID, string UserName, string Password, string Permission, bool IsActive) 
         {
             ID = Employee.ID;
             NationalNumber = Employee.NationalNumber;
@@ -77,7 +81,7 @@ namespace ClinicBusiness
             this.UserName = UserName;
             this.Password = Password;
             this.Permission = Permission;
-
+            this.IsActive = IsActive;
             _Mode = enMode.Edit;
         }
 
@@ -87,10 +91,12 @@ namespace ClinicBusiness
             string userName= string.Empty;
             string password = string.Empty;
             string permission = string.Empty;
-            if (clsUserData.GetUserInfoByID(UserID, ref employeeID, ref userName, ref password, ref permission, ref ErrorMessage))
+            bool isActive = false;
+            if (clsUserData.GetUserInfoByID(UserID, ref employeeID, ref userName, ref password, ref permission,
+                ref isActive, ref ErrorMessage))
             {
                 return new clsUser(clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage), UserID, userName, password,
-                    permission);
+                    permission, isActive);
             }
             else
             {
@@ -104,10 +110,12 @@ namespace ClinicBusiness
             string userName = string.Empty;
             string password = string.Empty;
             string permission = string.Empty;
-            if (clsUserData.GetUserInfoByEmployeeID(EmployeeID, ref userID, ref userName, ref password, ref permission, ref ErrorMessage))
+            bool isActive = false;
+            if (clsUserData.GetUserInfoByEmployeeID(EmployeeID, ref userID, ref userName, ref password, ref permission, 
+                ref isActive, ref ErrorMessage))
             {
                 return new clsUser(clsEmployee.GetEmployeeInfoByID(EmployeeID, ref ErrorMessage), userID, userName, password,
-                    permission);
+                    permission, isActive);
             }
             else
             {
@@ -125,10 +133,12 @@ namespace ClinicBusiness
 
             string permission = string.Empty;
 
-            if (clsUserData.GetUserInfoByUserName(userName, ref iD, ref employeeID, ref password, ref permission, ref ErrorMessage))
+            bool isActive = false;
+            if (clsUserData.GetUserInfoByUserName(userName, ref iD, ref employeeID, ref password, ref permission,
+                ref isActive, ref ErrorMessage))
             {
                 return new clsUser(clsEmployee.GetEmployeeInfoByID(employeeID, ref ErrorMessage), iD, userName, password,
-                    permission);
+                    permission, isActive);
             }
             else
             {
@@ -147,11 +157,14 @@ namespace ClinicBusiness
                     _Mode = enMode.Edit;
                     break;
                 case enMode.Edit:
-                    IsSaved = clsUserData.UpdateUserInfo(UserID, EmployeeID, UserName, Password, Permission, 1, ref ErrorMessage);
+                    IsSaved = clsUserData.UpdateUserInfo(UserID, EmployeeID, UserName, Password, Permission, IsActive, 1,
+                        ref ErrorMessage);
                     break;
             }
             return IsSaved;
         }
+
+       
         public static bool DeleteUser(int ID, int UserID, ref string ErrorMessage)
         {
             return clsUserData.DeleteUser(ID, UserID, ref ErrorMessage);
@@ -168,7 +181,7 @@ namespace ClinicBusiness
         {
             return clsUserData.IsUserExistByUserName(UserName, ref ErrorMessage);
         }
-        public static DataTable GetSetOfUser(int PageNumber, int RowsPerPage, ref string ErrorMessage)
+        public static DataTable GetSetOfUsers(int PageNumber, int RowsPerPage, ref string ErrorMessage)
         {
             DataTable dtEncryptedUsers = clsUserData.GetSetOfUsers(PageNumber, RowsPerPage, ref ErrorMessage);
             DataTable dtDecryptedUsers = new DataTable();
@@ -186,8 +199,8 @@ namespace ClinicBusiness
                         string.Join(" ", ((string)row["Full Name"]).Split(' ').
                         Select(s => clsEncryptionDecryption.Decrypt(s))),
 
-                    (string)row["UserName"],
-                    (DateTime)row["IsDeleted"]
+                    clsEncryptionDecryption.Decrypt((string)row["UserName"]),
+                    (bool)row["IsActive"]
                 );
             }
             return dtDecryptedUsers;

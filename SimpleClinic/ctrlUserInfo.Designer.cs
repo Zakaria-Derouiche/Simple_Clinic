@@ -36,6 +36,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.linkLblEmployeeInfo = new System.Windows.Forms.LinkLabel();
             this.linkLblUserPermissions = new System.Windows.Forms.LinkLabel();
+            this.lblIsActive = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -111,10 +113,29 @@
             this.linkLblUserPermissions.Text = "Show User Permmissions";
             this.linkLblUserPermissions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblUserPermissions_LinkClicked);
             // 
+            // lblIsActive
+            // 
+            this.lblIsActive.AutoSize = true;
+            this.lblIsActive.Location = new System.Drawing.Point(612, 11);
+            this.lblIsActive.Name = "lblIsActive";
+            this.lblIsActive.Size = new System.Drawing.Size(0, 16);
+            this.lblIsActive.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(489, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 16);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Is Active";
+            // 
             // ctrlUserInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblIsActive);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLblUserPermissions);
             this.Controls.Add(this.linkLblEmployeeInfo);
             this.Controls.Add(this.lblUserName);
@@ -140,5 +161,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.LinkLabel linkLblEmployeeInfo;
         private System.Windows.Forms.LinkLabel linkLblUserPermissions;
+        private System.Windows.Forms.Label lblIsActive;
+        private System.Windows.Forms.Label label3;
     }
 }

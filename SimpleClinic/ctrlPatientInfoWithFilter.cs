@@ -13,7 +13,11 @@ namespace SimpleClinic
 {
     public partial class ctrlPatientInfoWithFilter : UserControl
     {
+
+
         private clsPatient _Patient = new clsPatient();
+
+        public clsPatient Patient { get { return _Patient; } }
         public ctrlPatientInfoWithFilter()
         {
             InitializeComponent();
@@ -24,6 +28,13 @@ namespace SimpleClinic
             btnFind.Enabled = false;
 
             comboBoxFilterBy.SelectedIndex = 0;
+        }
+
+        public void LoadPatientInfo(int PatientID)
+        {
+            _Patient = clsPatient.GetPatientInfoByID(PatientID, ref clsGlobal.ErrorMessage);
+
+            ctrlPatientInfo1.LoadPatientInfo(_Patient);
         }
 
 

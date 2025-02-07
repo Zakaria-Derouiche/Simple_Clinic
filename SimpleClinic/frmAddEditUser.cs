@@ -18,20 +18,34 @@ namespace SimpleClinic
 
         private enMode _Mode;
 
+        Form _Sender;
+
         private bool _IsUserPermissionChanged;
 
         clsUser _User = new clsUser();
-        public frmAddEditUser(int UserID)
+
+        private bool _IsUserAddedOrUpdated = false;
+
+        public event EventHandler UserAddedOrUpdated;
+
+
+        public frmAddEditUser(int UserID, Form Sender = null)
         {
             InitializeComponent();
+
+            _Sender = Sender;
+
+            _IsUserPermissionChanged = false;
+
 
             _User = clsUser.GetUserInfoByID(UserID, ref clsGlobal.ErrorMessage);
 
             _Mode = _User == null || _User.ID == -1 ? enMode.Add : enMode.Edit;
 
+
             ctrlEmployeeWithFilter1.SelectedEmployee += _Raise;
 
-            _IsUserPermissionChanged = false;
+            
         }
 
         private void _Raise(object sender, EventArgs e)
@@ -42,19 +56,38 @@ namespace SimpleClinic
 
                 _User = clsUser.GetUserInfoByEmployeeID(ctrlEmployeeWithFilter1.Employee.EmployeeID, ref clsGlobal.ErrorMessage);
 
+                _Mode = _User != null && _User.ID > 0 ? enMode.Edit : enMode.Add;
+
+                _DecryptFetechedData();
+
+                _LoadUserInfoToForm();
+
+                
+            }
+            else
+            {
+                _User = new clsUser();
+
+                _Mode = enMode.Add;
+
                 _DecryptFetechedData();
 
                 _LoadUserInfoToForm();
 
             }
-            gBoxUserInfo.Enabled = _Mode == enMode.Edit;
+
+           
         }
 
         private void _DecryptFetechedData()
         {
-            _User.UserName = clsEncryptionDecryption.Decrypt(_User.UserName);
+            if (_Mode == enMode.Edit)
+            {
+                _User.UserName = clsEncryptionDecryption.Decrypt(_User.UserName);
 
-            _User.Permission = clsEncryptionDecryption.Decrypt(_User.Permission);
+                _User.Permission = clsEncryptionDecryption.Decrypt(_User.Permission);
+            }
+            
         }
         private void _LoadUserInfoToForm()
         {
@@ -65,9 +98,11 @@ namespace SimpleClinic
 
             txtBoxPassword.Text =  "" ;
 
-            rbFullControl.Checked = _Mode == enMode.Add ? false : _User.Permission == "Full Control" ? true : false;
+            rbFullControl.Checked = _Mode == enMode.Add ? false : _User.Permission == "Full Control";
 
-            rbCustom.Checked = _Mode == enMode.Add ? false : _User.Permission != "Full Control" ? true : false;
+            rbCustom.Checked = _Mode == enMode.Add ? false : _User.Permission != "Full Control";
+
+            gBoxUserInfo.Enabled = ctrlEmployeeWithFilter1.Employee != null && ctrlEmployeeWithFilter1.Employee.ID > 0;
 
         }
 
@@ -101,7 +136,6 @@ namespace SimpleClinic
             btnShowHidePassword.BackgroundImage = txtBoxPassword.UseSystemPasswordChar ? Resources.eye : Resources.HidePassword1;
 
         }
-
 
         private bool _IsUserDataChanged()
         {
@@ -137,6 +171,8 @@ namespace SimpleClinic
                    (rbCustom.Checked || rbFullControl.Checked);
         }
 
+        
+
         private void _Save()
         {
 
@@ -146,6 +182,15 @@ namespace SimpleClinic
 
             _UpdateFormInfo(IsSaved);
 
+            _IsUserAddedOrUpdated = IsSaved;
+            
+
+        }
+
+        private void _RaiseAdditionOrUpdateEvent()
+        {
+            if(_IsUserAddedOrUpdated) 
+                UserAddedOrUpdated?.Invoke(this, EventArgs.Empty);
         }
         private void _UpdateFormInfo(bool IsSaved)
         {
@@ -159,7 +204,7 @@ namespace SimpleClinic
             }
             else
             {
-                MessageBox.Show(clsGlobal.ErrorMessage, "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed Operation", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -174,7 +219,7 @@ namespace SimpleClinic
             _Save();
         }
 
-        private void _Raise(object sender, string NewUserPermmissions)
+        private void _Raise1(object sender, string NewUserPermmissions)
         {
             if(_User == null)
                 _User = new clsUser();
@@ -190,9 +235,9 @@ namespace SimpleClinic
             {
                 string UserPermissions = _Mode == enMode.Add ? string.Empty : _User.Permission;
                 
-                frmUserPermissions Permissions = new frmUserPermissions(UserPermissions);
+                frmUserPermissions Permissions = new frmUserPermissions(UserPermissions, false, this);
 
-                Permissions.UserPermissionsChanged += _Raise;
+                Permissions.UserPermissionsChanged += _Raise1;
 
                 Permissions.Show();
 
@@ -216,6 +261,8 @@ namespace SimpleClinic
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            _Sender.Show();
+
             this.Close();
         }
     }

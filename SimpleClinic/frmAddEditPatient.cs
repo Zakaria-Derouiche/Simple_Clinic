@@ -20,18 +20,32 @@ namespace SimpleClinic
 
         private clsPatient _Patient = new clsPatient();
 
+        private bool _IsNewPatientAdded;
+
+        public event EventHandler PatientAdded;
+
         private void _Raise(object sender, EventArgs e)
         {
-            if(clsPatient.IsPatientExistByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage))
+            if(ctrlPersonWithFilter1.Person != null && ctrlPersonWithFilter1.Person.ID > 0 &&
+                clsPatient.IsPatientExistByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage))
             {
                 _Patient = clsPatient.GetPatientInfoByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage);
 
                 _Mode = _Patient == null || _Patient.PatientID == -1 ? enMode.Add : enMode.Show;
+
+                btnSave.Enabled = false;
                
+            }else
+            {
+                _Patient = new clsPatient();
             }
             _PrepareFormInfo();
 
         }
+
+       
+
+
 
         public frmAddEditPatient(int PatientID, Form sender = null)
         {
@@ -44,6 +58,8 @@ namespace SimpleClinic
             ctrlPersonWithFilter1.PersonSelected += _Raise;
 
             _Sender = sender;
+
+            _IsNewPatientAdded = false;
         }
 
         private void _PrepareFormInfo()
@@ -52,7 +68,7 @@ namespace SimpleClinic
 
             lblTitle.Location = new Point((this.Size.Width / 2) - (lblTitle.Size.Width / 2), 10);
 
-            lblPatientID.Text =  _Mode == enMode.Add ? "Person ID: N/A" : "Person ID: " + _Patient.PatientID.ToString();
+            lblPatientID.Text =  _Patient == null || _Patient.PatientID < 1 ? "Patient ID: N/A" : "Patient ID: " + _Patient.PatientID.ToString();
 
             btnSave.Enabled = _Mode == enMode.Add && ctrlPersonWithFilter1.Person != null
 
@@ -68,14 +84,34 @@ namespace SimpleClinic
             _PrepareFormInfo();
         }
 
-        private bool _Check()
+        private bool _CheckInputs()
         {
             return ctrlPersonWithFilter1.Person != null && ctrlPersonWithFilter1.Person.ID != -1;
         }
 
+        private bool _CheckPatientExistance()
+        {
+            return clsPatient.IsPatientExistByPersonID(ctrlPersonWithFilter1.Person.ID, ref clsGlobal.ErrorMessage);
+        }
+
+        private bool _ProccessSaveOperation()
+        {
+            if(!_CheckInputs())
+            {
+                MessageBox.Show("No person Selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if(_CheckPatientExistance())
+            {
+                MessageBox.Show("This Person Is Already a Patient", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return _Save();
+        }
+
         private bool _Save()
         {
-
+            
             _Patient = new clsPatient();
 
             _Patient.ID = ctrlPersonWithFilter1.Person.ID;
@@ -86,24 +122,26 @@ namespace SimpleClinic
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_Save())
+            if (_ProccessSaveOperation())
             {
                 lblPatientID.Text = "Patient ID: " + _Patient.PatientID.ToString();
+
+                _IsNewPatientAdded = true;
 
                 btnSave.Enabled = false;
 
                 MessageBox.Show("Patient Saved Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-               
-
             else
             
-                MessageBox.Show("Failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(clsGlobal.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if(_IsNewPatientAdded)
+                PatientAdded?.Invoke(this, EventArgs.Empty);
 
             _Sender.Show();
 

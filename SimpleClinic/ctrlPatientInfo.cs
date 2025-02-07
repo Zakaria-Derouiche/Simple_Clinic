@@ -34,7 +34,7 @@ namespace SimpleClinic
 
             linkLblPersonInfo.Enabled = _Patient != null && _Patient.PatientID > 0;
 
-            linkLblPatientAppointments.Enabled = _Patient != null && _Patient.PatientID > 0;
+            
         }
 
         private void linkLblPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -51,9 +51,6 @@ namespace SimpleClinic
            _LoadInfo();
         }
 
-        private void linkLblPatientAppointments_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MessageBox.Show("Not Yet Implemented");
-        }
+      
     }
 }

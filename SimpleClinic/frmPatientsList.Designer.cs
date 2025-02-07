@@ -32,8 +32,8 @@
             this.dgvPatients = new System.Windows.Forms.DataGridView();
             this.cmsPatients = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPatientInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addAPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteAPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPatientHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -74,11 +74,11 @@
             this.cmsPatients.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsPatients.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showPatientInfoToolStripMenuItem,
-            this.addAPatientToolStripMenuItem,
-            this.deleteAPatientToolStripMenuItem,
+            this.addPatientToolStripMenuItem,
+            this.deletePatientToolStripMenuItem,
             this.showPatientHToolStripMenuItem});
             this.cmsPatients.Name = "cmsPatients";
-            this.cmsPatients.Size = new System.Drawing.Size(313, 100);
+            this.cmsPatients.Size = new System.Drawing.Size(313, 128);
             // 
             // showPatientInfoToolStripMenuItem
             // 
@@ -87,19 +87,19 @@
             this.showPatientInfoToolStripMenuItem.Text = "Show Patient Info";
             this.showPatientInfoToolStripMenuItem.Click += new System.EventHandler(this.showPartientInfoToolStripMenuItem_Click);
             // 
-            // addAPatientToolStripMenuItem
+            // addPatientToolStripMenuItem
             // 
-            this.addAPatientToolStripMenuItem.Name = "addAPatientToolStripMenuItem";
-            this.addAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.addAPatientToolStripMenuItem.Text = "Add A Patient";
-            this.addAPatientToolStripMenuItem.Click += new System.EventHandler(this.addAPatientToolStripMenuItem_Click);
+            this.addPatientToolStripMenuItem.Name = "addPatientToolStripMenuItem";
+            this.addPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.addPatientToolStripMenuItem.Text = "Add Patient";
+            this.addPatientToolStripMenuItem.Click += new System.EventHandler(this.addAPatientToolStripMenuItem_Click);
             // 
-            // deleteAPatientToolStripMenuItem
+            // deletePatientToolStripMenuItem
             // 
-            this.deleteAPatientToolStripMenuItem.Name = "deleteAPatientToolStripMenuItem";
-            this.deleteAPatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
-            this.deleteAPatientToolStripMenuItem.Text = "Delete A Patient";
-            this.deleteAPatientToolStripMenuItem.Click += new System.EventHandler(this.deleteAPatienttToolStripMenuItem_Click);
+            this.deletePatientToolStripMenuItem.Name = "deletePatientToolStripMenuItem";
+            this.deletePatientToolStripMenuItem.Size = new System.Drawing.Size(312, 24);
+            this.deletePatientToolStripMenuItem.Text = "Delete Patient";
+            this.deletePatientToolStripMenuItem.Click += new System.EventHandler(this.deleteAPatienttToolStripMenuItem_Click);
             // 
             // showPatientHToolStripMenuItem
             // 
@@ -252,8 +252,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip cmsPatients;
         private System.Windows.Forms.ToolStripMenuItem showPatientInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addAPatientToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteAPatientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addPatientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletePatientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPatientHToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblPageNumber;

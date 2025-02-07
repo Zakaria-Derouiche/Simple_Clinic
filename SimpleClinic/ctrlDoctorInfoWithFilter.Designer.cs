@@ -51,6 +51,7 @@
             this.btnFind.TabIndex = 7;
             this.btnFind.Text = "Find";
             this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // comboBoxFilterBy
             // 
@@ -63,6 +64,7 @@
             this.comboBoxFilterBy.Name = "comboBoxFilterBy";
             this.comboBoxFilterBy.Size = new System.Drawing.Size(165, 24);
             this.comboBoxFilterBy.TabIndex = 6;
+            this.comboBoxFilterBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilterBy_SelectedIndexChanged);
             // 
             // txtBoxFilterBy
             // 
@@ -71,6 +73,8 @@
             this.txtBoxFilterBy.Name = "txtBoxFilterBy";
             this.txtBoxFilterBy.Size = new System.Drawing.Size(161, 22);
             this.txtBoxFilterBy.TabIndex = 5;
+            this.txtBoxFilterBy.TextChanged += new System.EventHandler(this.txtBoxFilterBy_TextChanged);
+            this.txtBoxFilterBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxFilterBy_KeyPress);
             // 
             // label1
             // 

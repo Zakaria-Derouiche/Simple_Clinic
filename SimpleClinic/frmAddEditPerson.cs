@@ -44,8 +44,8 @@ namespace SimpleClinic
 
             _Mode = _Person == null || _Person.ID < 1 ? enMode.Add : enMode.Edit; 
 
-            if(_Mode == enMode.Edit)
-                clsEncryptionDecryption.DecryptPersonInfo(ref _Person);
+            //if(_Mode == enMode.Edit)
+            //    clsEncryptionDecryption.DecryptPersonInfo(ref _Person);
 
         }
 
@@ -251,7 +251,7 @@ namespace SimpleClinic
 
             _Mode = IsSaved ? enMode.Edit : enMode.Add;
 
-            string Message = IsSaved ? "Successfull Save Operation" : clsGlobal.ErrorMessage;
+            string Message = IsSaved ? "Successfull Save Operation" : "Failed Operation";
 
             MessageBox.Show(Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -265,7 +265,7 @@ namespace SimpleClinic
 
             _IsChanged = IsSaved;
 
-            string Message = IsSaved ? "Successfull Save Operation" : clsGlobal.ErrorMessage;
+            string Message = IsSaved ? "Successfull Save Operation" : "Failed Operation";
 
             MessageBox.Show(Message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }     

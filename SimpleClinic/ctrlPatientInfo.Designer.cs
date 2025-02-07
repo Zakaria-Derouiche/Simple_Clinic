@@ -33,7 +33,6 @@
             this.lblPatientID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLblPersonInfo = new System.Windows.Forms.LinkLabel();
-            this.linkLblPatientAppointments = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -81,22 +80,10 @@
             this.linkLblPersonInfo.Text = "Show Person Informations";
             this.linkLblPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblPersonInfo_LinkClicked);
             // 
-            // linkLblPatientAppointments
-            // 
-            this.linkLblPatientAppointments.AutoSize = true;
-            this.linkLblPatientAppointments.Location = new System.Drawing.Point(279, 63);
-            this.linkLblPatientAppointments.Name = "linkLblPatientAppointments";
-            this.linkLblPatientAppointments.Size = new System.Drawing.Size(169, 16);
-            this.linkLblPatientAppointments.TabIndex = 5;
-            this.linkLblPatientAppointments.TabStop = true;
-            this.linkLblPatientAppointments.Text = "Show Patient Appointments";
-            this.linkLblPatientAppointments.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblPatientAppointments_LinkClicked);
-            // 
             // ctrlPatientInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.linkLblPatientAppointments);
             this.Controls.Add(this.linkLblPersonInfo);
             this.Controls.Add(this.lblPatientID);
             this.Controls.Add(this.label4);
@@ -117,6 +104,5 @@
         private System.Windows.Forms.Label lblPatientID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLblPersonInfo;
-        private System.Windows.Forms.LinkLabel linkLblPatientAppointments;
     }
 }

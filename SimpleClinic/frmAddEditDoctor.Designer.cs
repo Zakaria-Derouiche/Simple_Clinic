@@ -104,6 +104,7 @@
             this.txtBoxSpeciality.Name = "txtBoxSpeciality";
             this.txtBoxSpeciality.Size = new System.Drawing.Size(415, 39);
             this.txtBoxSpeciality.TabIndex = 5;
+            this.txtBoxSpeciality.TextChanged += new System.EventHandler(this.txtBoxSpeciality_TextChanged);
             this.txtBoxSpeciality.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxSpeciality_KeyPress);
             this.txtBoxSpeciality.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxSpeciality_Validating);
             // 

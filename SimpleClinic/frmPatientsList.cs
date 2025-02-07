@@ -15,10 +15,7 @@ namespace SimpleClinic
     public partial class frmPatientsList : Form
     {
         private Form _Sender = null;
-
         private DataTable _dtPatients = new DataTable();
-
-
         private int _PageNumber = 1;
         private int _RowsPerPage = 2;
         private int _TotalPageNumber;
@@ -31,9 +28,16 @@ namespace SimpleClinic
             _Sender = Sender;
 
         }
-       
+        
+        private void _Raise(object sender, EventArgs e)
+        {
+            _dtPatients = clsPatient.GetSetOfPatientsData(_PageNumber, _RowsPerPage, ref clsGlobal.ErrorMessage);
+
+            dgvPatients.DataSource = _dtPatients;
+        }
         private void _LoadInfo()
         {
+
             dgvPatients.DataSource = _dtPatients;
 
             lblPageNumber.Text += _PageNumber.ToString();
@@ -43,7 +47,6 @@ namespace SimpleClinic
             lblTotalPageNumber.Text += _TotalPageNumber.ToString();
 
             lblTotalRecordNumber.Text += _TotalPatientsNumber.ToString();
-
 
         }
         private void frmPatientsList_Load(object sender, EventArgs e)
@@ -105,6 +108,7 @@ namespace SimpleClinic
                 dgvPatients.DataSource = _dtPatients;
             }
             btnNext.Enabled = _PageNumber != _TotalPageNumber;
+
             btnPrev.Enabled = _PageNumber != 1;
         }
 
@@ -118,7 +122,9 @@ namespace SimpleClinic
 
                 dgvPatients.DataSource = _dtPatients;
             }
+
             btnNext.Enabled = _PageNumber != _TotalPageNumber;
+
             btnPrev.Enabled = _PageNumber != 1;
         }
 
@@ -139,6 +145,8 @@ namespace SimpleClinic
 
             frmAddEditPatient Patient = new frmAddEditPatient(-1, this);
 
+            Patient.PatientAdded += _Raise;
+
             this.Hide();
 
             Patient.ShowDialog();
@@ -158,7 +166,7 @@ namespace SimpleClinic
         private void _ShowResult(bool IsDeleted)
         {
             if (IsDeleted)
-                MessageBox.Show("Person Deleted Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Patient Deleted Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Deletion Is Failed", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -168,12 +176,19 @@ namespace SimpleClinic
 
             bool IsDeleted = clsPatient.DeletePatient(PatientID, clsGlobal.CurrentUser.UserID,ref clsGlobal.ErrorMessage);
 
+            if(IsDeleted)
+            {
+                _dtPatients = clsPatient.GetSetOfPatientsData(_PageNumber, _RowsPerPage, ref clsGlobal.ErrorMessage);
+
+                dgvPatients.DataSource = _dtPatients;
+            }
+
             _ShowResult(IsDeleted);
         }
 
         private void deleteAPatienttToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are You Sure You Want To Delete this Person", "Warning", MessageBoxButtons.OKCancel,
+            if (MessageBox.Show("Are You Sure You Want To Delete this Patient", "Warning", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 _DeletePatient();

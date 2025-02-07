@@ -101,7 +101,7 @@ namespace ClinicDataAccess
             return IsFound;
         }
         public static bool GetUserInfoByID(int ID, ref int EmployeeID, ref string UserName, ref string Password,
-            ref string Permission, ref string ErrorMessage)
+            ref string Permission, ref bool IsActive, ref string ErrorMessage)
         {
             bool IsFound = false;
             try
@@ -132,6 +132,13 @@ namespace ClinicDataAccess
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(PermissionOutputParameter);
+
+                        SqlParameter IsActiveOutputParameter = new SqlParameter("@IsActive", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsActiveOutputParameter);
+
                         SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
                         {
                             Direction = ParameterDirection.Output
@@ -149,6 +156,7 @@ namespace ClinicDataAccess
                             UserName = (string)Command.Parameters["@UserName"].Value;
                             Password = (string)Command.Parameters["@Password"].Value;
                             Permission = (string)Command.Parameters["@Permission"].Value;
+                            IsActive = (bool)Command.Parameters["@IsActive"].Value;
                         }
                         Connection.Close();
                     }
@@ -162,7 +170,7 @@ namespace ClinicDataAccess
         }
 
         public static bool GetUserInfoByEmployeeID(int EmployeeID, ref int UserID, ref string UserName, ref string Password,
-            ref string Permission, ref string ErrorMessage)
+            ref string Permission, ref bool IsActive, ref string ErrorMessage)
         {
             bool IsFound = false;
             try
@@ -193,6 +201,11 @@ namespace ClinicDataAccess
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(PermissionOutputParameter);
+                        SqlParameter IsActiveOutputParameter = new SqlParameter("@IsActive", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsActiveOutputParameter);
                         SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
                         {
                             Direction = ParameterDirection.Output
@@ -208,6 +221,7 @@ namespace ClinicDataAccess
                             UserName = (string)Command.Parameters["@UserName"].Value;
                             Password = (string)Command.Parameters["@Password"].Value;
                             Permission = (string)Command.Parameters["@Permission"].Value;
+                            IsActive = (bool)Command.Parameters["IsActive"].Value;
                         }
                         Connection.Close();
                     }
@@ -222,7 +236,7 @@ namespace ClinicDataAccess
 
 
         public static bool GetUserInfoByUserName(string UserName, ref int ID, ref int EmployeeID, ref string Password,
-           ref string Permission, ref string ErrorMessage)
+           ref string Permission, ref bool IsActive, ref string ErrorMessage)
         {
             bool IsFound = false;
             try
@@ -255,11 +269,18 @@ namespace ClinicDataAccess
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(PermissionOutputParameter);
+
+                        SqlParameter IsActiveOutputParameter = new SqlParameter("@IsActive", SqlDbType.Bit)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        Command.Parameters.Add(IsActiveOutputParameter);
                         SqlParameter IsFoundOutputParameter = new SqlParameter("@IsFound", SqlDbType.Bit)
                         {
                             Direction = ParameterDirection.Output
                         };
                         Command.Parameters.Add(IsFoundOutputParameter);
+
 
                         Connection.Open();
                         Command.ExecuteNonQuery();
@@ -270,6 +291,7 @@ namespace ClinicDataAccess
                             EmployeeID = (int)Command.Parameters["@EmployeeID"].Value;
                             Password = (string)Command.Parameters["@Password"].Value;
                             Permission = (string)Command.Parameters["@Permission"].Value;
+                            IsActive = (bool)Command.Parameters["IsActive"].Value;
                         }
                         Connection.Close();
                     }
@@ -316,7 +338,7 @@ namespace ClinicDataAccess
         }
 
         public static bool UpdateUserInfo(int ID, int EmployeeID, string UserName, string Password, string Permission,
-            int UpdateUserID, ref string ErrorMessage)
+            bool IsActive, int UpdateUserID, ref string ErrorMessage)
         {
             bool IsUpdated = false;
             try
@@ -331,6 +353,7 @@ namespace ClinicDataAccess
                         Command.Parameters.AddWithValue("@UserName", UserName);
                         Command.Parameters.AddWithValue("@Password", Password);
                         Command.Parameters.AddWithValue("@Permission", Permission);
+                        Command.Parameters.AddWithValue("IsActive", IsActive);
                         Command.Parameters.AddWithValue("@OperationUserID", UpdateUserID);
                         SqlParameter IsUpdatedParameter = new SqlParameter("@IsUpdated", SqlDbType.Bit)
                         {
@@ -350,6 +373,8 @@ namespace ClinicDataAccess
             }
             return IsUpdated;
         }
+
+       
         public static bool DeleteUser(int ID, int OperationUserID, ref string ErrorMessage)
         {
             bool IsDeleted = false;
@@ -409,6 +434,7 @@ namespace ClinicDataAccess
             }
             return dtUsers;
         }
+
         public static int GetTotalUsersNumber(ref string ErrorMessage)
         {
             int TotalUsersNumber = 0;
@@ -426,7 +452,7 @@ namespace ClinicDataAccess
                         Command.Parameters.Add(TotalUsersOutputParameter);
                         Connection.Open();
                         Command.ExecuteNonQuery();
-                        TotalUsersNumber = (int)Command.Parameters["@TotalPatientsNumber"].Value;
+                        TotalUsersNumber = (int)Command.Parameters["@TotalUsersNumber"].Value;
                         Connection.Close();
                     }
                 }

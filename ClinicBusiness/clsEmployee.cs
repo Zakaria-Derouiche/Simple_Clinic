@@ -169,8 +169,8 @@ namespace ClinicBusiness
             dtDecryptedEmployees.Columns.Add("Employee ID", typeof(int));
             dtDecryptedEmployees.Columns.Add("Person ID", typeof(int));
             dtDecryptedEmployees.Columns.Add("Full Name", typeof(string));
-            dtDecryptedEmployees.Columns.Add("Hire Date", typeof(DateTime));
-            dtDecryptedEmployees.Columns.Add("End Date", typeof(DateTime));
+            dtDecryptedEmployees.Columns.Add("Hire Date", typeof(string));
+            dtDecryptedEmployees.Columns.Add("End Date", typeof(string));
             dtDecryptedEmployees.Columns.Add("Type Of Leaving", typeof(string));
             dtDecryptedEmployees.Columns.Add("Reason Of Leaving", typeof(string));
             foreach (DataRow row in dtEncryptedEmployees.Rows)
@@ -180,10 +180,10 @@ namespace ClinicBusiness
                     (int)row["PersonID"],
                         string.Join(" ", ((string)row["Full Name"]).Split(' ').
                         Select(s => clsEncryptionDecryption.Decrypt(s))),
-                    (DateTime)row["HireDate"],
-                    (DateTime)row["EndDate"],
-                    (string)row["Type Of Leaving"],
-                    (string)row["ReasonOfLeaving"]
+                    row["HireDate"].ToString(),
+                    row["EndDate"] == System.DBNull.Value ? "" : row["EndDate"].ToString(),
+                    row["Type Of Leaving"] == System.DBNull.Value ? "" : (string)row["Type Of Leaving"],
+                    row["ReasonOfLeaving"] == System.DBNull.Value ? "" : (string)row["ReasonOfLeaving"]
                 );
             }
             return dtDecryptedEmployees;

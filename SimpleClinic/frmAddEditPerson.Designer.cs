@@ -66,11 +66,11 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Teal;
-            this.lblTitle.Location = new System.Drawing.Point(280, 21);
+            this.lblTitle.Location = new System.Drawing.Point(281, 21);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(240, 32);
+            this.lblTitle.Size = new System.Drawing.Size(239, 32);
             this.lblTitle.TabIndex = 24;
-            this.lblTitle.Text = "Add New Patient";
+            this.lblTitle.Text = "Add New Person";
             // 
             // btnSave
             // 

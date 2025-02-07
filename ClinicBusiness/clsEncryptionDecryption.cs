@@ -46,6 +46,8 @@ namespace ClinicBusiness
                 }
             }
         }
+
+
         public static string Decrypt(string cipherText)
         {
             using (Aes aesAlg = Aes.Create())

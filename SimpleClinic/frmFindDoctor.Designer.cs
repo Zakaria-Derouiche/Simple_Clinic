@@ -50,6 +50,7 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label1
             // 
@@ -61,7 +62,7 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Search For A Doctor";
             // 
-            // frmDoctorInfo
+            // frmFindDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,7 +71,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlDoctorInfoWithFilter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmDoctorInfo";
+            this.Name = "frmFindDoctor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Doctor Info";
             this.ResumeLayout(false);

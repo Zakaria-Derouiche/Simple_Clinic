@@ -66,6 +66,8 @@ namespace SimpleClinic
 
             if(clsEncryptionDecryption.ComputeHash(txtBoxPassword.Text.Trim()) == clsGlobal.CurrentUser.Password)
             {
+                
+
                 frmMenu menu = new frmMenu(this);
 
                 

@@ -15,16 +15,21 @@ namespace SimpleClinic
     {
 
         private clsDoctor _Doctor = new clsDoctor();
+
+        public clsDoctor Doctor {  get { return _Doctor; } }
         public ctrlDoctorInfoWithFilter()
         {
             InitializeComponent();
+
+            comboBoxFilterBy.SelectedIndex = 0;
+
+            btnFind.Enabled = false;
+
         }
 
         private void ctrlDoctorInfoWithFilter_Load(object sender, EventArgs e)
         {
-            comboBoxFilterBy.SelectedIndex = 0;
-
-            btnFind.Enabled = false;
+           
 
 
         }
@@ -43,12 +48,16 @@ namespace SimpleClinic
 
         private void txtBoxFilterBy_TextChanged(object sender, EventArgs e)
         {
-            if (txtBoxFilterBy.Text.Length != 0)
-                btnFind.Enabled = true;
+            btnFind.Enabled = txtBoxFilterBy.Text.Length > 0;
 
         }
 
+        public void LoadDoctorInfo(int DoctorID)
+        {
+            _Doctor = clsDoctor.GetDoctorInfoByID(DoctorID, ref clsGlobal.ErrorMessage);
 
+            ctrlDoctorInfo1.LoadDoctorInfo(_Doctor);
+        }
 
         private void _GetDoctorInfo()
         {
@@ -78,7 +87,7 @@ namespace SimpleClinic
 
         private void _LoadUserInfo()
         {
-            if (_Doctor != null)
+            //if (_Doctor != null)
                 ctrlDoctorInfo1.LoadDoctorInfo(_Doctor);
         }
         private void btnFind_Click(object sender, EventArgs e)

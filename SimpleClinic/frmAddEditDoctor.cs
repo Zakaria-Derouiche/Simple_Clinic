@@ -19,6 +19,11 @@ namespace SimpleClinic
 
         private clsDoctor _Doctor;
 
+        private Form _Sender = null;
+
+        private bool _IsDOctorAddedOrUpdated = false;
+
+        public event EventHandler DoctorAddedOrUpdated;
 
         private void _Raise(object sender, EventArgs e)
         {
@@ -30,21 +35,32 @@ namespace SimpleClinic
 
                 _Doctor = clsDoctor.GetDoctorInfoByEmployeeID(ctrlEmployeeWithFilter1.Employee.EmployeeID, ref clsGlobal.ErrorMessage);
 
+                _PrepareFormInfo();
+
+                _LoadDoctorInfo();
+
+
+            }
+            else
+            {
+                _Mode = enMode.Add;
+
+                _Doctor = new clsDoctor();
+
                 _LoadDoctorInfo();
 
                 _PrepareFormInfo();
-
-                
             }
-           
-            btnSave.Enabled = ctrlEmployeeWithFilter1.Employee != null && ctrlEmployeeWithFilter1.Employee.EmployeeID > 0;
+            btnSave.Enabled = ctrlEmployeeWithFilter1.Employee != null || _Doctor != null;
         }
 
 
-        public frmAddEditDoctor(int DoctorID)
+        public frmAddEditDoctor(int DoctorID, Form Sender = null)
         {
 
             InitializeComponent();
+
+            _Sender = Sender;
 
             _Doctor = clsDoctor.GetDoctorInfoByID(DoctorID, ref clsGlobal.ErrorMessage);
 
@@ -83,6 +99,7 @@ namespace SimpleClinic
             _LoadDoctorInfo();
 
             ctrlEmployeeWithFilter1.LoadEmployeeInfo((clsEmployee) _Doctor);
+            
 
 
         }
@@ -92,7 +109,6 @@ namespace SimpleClinic
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-      
         private void _LoadDoctorInfoFromForm()
         {
              _Doctor = _Mode == enMode.Add ? new clsDoctor(ctrlEmployeeWithFilter1.Employee) : _Doctor;
@@ -111,7 +127,7 @@ namespace SimpleClinic
             }
             else
             {
-                MessageBox.Show(clsGlobal.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed Operation", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -120,6 +136,8 @@ namespace SimpleClinic
             _LoadDoctorInfoFromForm();
 
             bool IsSaved = _Doctor.Save(clsGlobal.CurrentUser.UserID, ref clsGlobal.ErrorMessage);
+
+            _IsDOctorAddedOrUpdated = IsSaved;
 
             _DisplayResult(IsSaved);
 
@@ -155,9 +173,19 @@ namespace SimpleClinic
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            _Sender.Show();
+
+            if (_IsDOctorAddedOrUpdated)
+            {
+                DoctorAddedOrUpdated?.Invoke(this, EventArgs.Empty);
+            }
+
             this.Close();
         }
 
-        
+        private void txtBoxSpeciality_TextChanged(object sender, EventArgs e)
+        {
+            btnSave.Enabled = txtBoxSpeciality.Text.Length > 0;
+        }
     }
 }

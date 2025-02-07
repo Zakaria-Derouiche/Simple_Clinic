@@ -139,8 +139,8 @@ namespace ClinicBusiness
             dtDecryptedDoctors.Columns.Add("Employee ID", typeof(int));
             dtDecryptedDoctors.Columns.Add("Full Name", typeof(string));
             dtDecryptedDoctors.Columns.Add("Specialization", typeof(string));
-            dtDecryptedDoctors.Columns.Add("Hire Date", typeof(DateTime));
-            dtDecryptedDoctors.Columns.Add("End Date", typeof(DateTime));
+            dtDecryptedDoctors.Columns.Add("Hire Date", typeof(string));
+            dtDecryptedDoctors.Columns.Add("End Date", typeof(string));
             
             foreach (DataRow row in dtEncryptedDoctors.Rows)
             {
@@ -150,9 +150,9 @@ namespace ClinicBusiness
                         string.Join(" ", ((string)row["Full Name"]).Split(' ').
                         Select(s => clsEncryptionDecryption.Decrypt(s))),
 
-                    (string)row["Specialization"],
-                    (DateTime)row["HireDate"],
-                    (DateTime)row["EndDate"]
+                     (string)row["Specialization"],
+                    row["HireDate"].ToString(),
+                    row["EndDate"] == System.DBNull.Value ? "" : (string)row["EndDate"]
                 );
             }
             return dtDecryptedDoctors;

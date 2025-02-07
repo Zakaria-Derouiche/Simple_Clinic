@@ -25,9 +25,6 @@ namespace SimpleClinic
         {
             _Doctor = Doctor;
 
-            
-            _Doctor.Specialization = _Doctor.Specialization;
-
             lblDoctorID.Text = _Doctor != null && _Doctor.DoctorID > 0 ? _Doctor.DoctorID.ToString() : "[???]";
 
             lblEmployeeID.Text = _Doctor != null && _Doctor.DoctorID > 0 ? _Doctor.EmployeeID.ToString() : "[???]";

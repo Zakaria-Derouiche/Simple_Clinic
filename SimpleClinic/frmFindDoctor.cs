@@ -12,9 +12,20 @@ namespace SimpleClinic
 {
     public partial class frmFindDoctor : Form
     {
-        public frmFindDoctor()
+
+        private Form _Sender = null;
+        public frmFindDoctor(Form Sender = null)
         {
             InitializeComponent();
+
+            _Sender = Sender;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            _Sender.Show();
+
+            this.Close();
         }
     }
 }

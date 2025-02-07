@@ -18,6 +18,16 @@ namespace SimpleClinic
 
             return regex.IsMatch(emailAddress);
         }
+        public static bool  ValidateDate(string Date)
+        {
+            var pattern = @"^(\d{2})-(\d{2})-(\d{4})$";
+            
+            var regex = new Regex(pattern);
+
+            return regex.IsMatch(Date);
+        }
+
+       
 
         public static bool ValidateInteger(string Number)
         {

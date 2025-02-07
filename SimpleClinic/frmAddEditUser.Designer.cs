@@ -30,6 +30,8 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gBoxUserInfo = new System.Windows.Forms.GroupBox();
+            this.lblUserID = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnShowHidePassword = new System.Windows.Forms.Button();
             this.rbCustom = new System.Windows.Forms.RadioButton();
             this.rbFullControl = new System.Windows.Forms.RadioButton();
@@ -41,8 +43,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.ctrlEmployeeWithFilter1 = new SimpleClinic.ctrlEmployeeWithFilter();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblUserID = new System.Windows.Forms.Label();
             this.gBoxUserInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,10 +71,27 @@
             this.gBoxUserInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gBoxUserInfo.Location = new System.Drawing.Point(13, 414);
             this.gBoxUserInfo.Name = "gBoxUserInfo";
-            this.gBoxUserInfo.Size = new System.Drawing.Size(841, 100);
+            this.gBoxUserInfo.Size = new System.Drawing.Size(841, 122);
             this.gBoxUserInfo.TabIndex = 2;
             this.gBoxUserInfo.TabStop = false;
             this.gBoxUserInfo.Text = "User Info";
+            // 
+            // lblUserID
+            // 
+            this.lblUserID.AutoSize = true;
+            this.lblUserID.Location = new System.Drawing.Point(121, 29);
+            this.lblUserID.Name = "lblUserID";
+            this.lblUserID.Size = new System.Drawing.Size(0, 16);
+            this.lblUserID.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 16);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "User ID:";
             // 
             // btnShowHidePassword
             // 
@@ -186,23 +203,6 @@
             this.ctrlEmployeeWithFilter1.Name = "ctrlEmployeeWithFilter1";
             this.ctrlEmployeeWithFilter1.Size = new System.Drawing.Size(841, 340);
             this.ctrlEmployeeWithFilter1.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 16);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "User ID:";
-            // 
-            // lblUserID
-            // 
-            this.lblUserID.AutoSize = true;
-            this.lblUserID.Location = new System.Drawing.Point(121, 29);
-            this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(0, 16);
-            this.lblUserID.TabIndex = 12;
             // 
             // frmAddEditUser
             // 

@@ -172,7 +172,7 @@ namespace ClinicDataAccess
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.StackTrace;
+                ErrorMessage = ex.Message;
             }
             return IsFound;
         }
@@ -252,7 +252,7 @@ namespace ClinicDataAccess
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.StackTrace;
+                ErrorMessage = ex.Message;
             }
             return IsFound;
         }

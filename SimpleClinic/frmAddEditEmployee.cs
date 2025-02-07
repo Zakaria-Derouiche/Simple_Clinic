@@ -28,7 +28,9 @@ namespace SimpleClinic
 
         private string _DisplayedPersonImage {  get; set; }
 
-        private clsEmployee _Employee = new clsEmployee(); 
+        private clsEmployee _Employee = new clsEmployee();
+
+        private bool _IsEmployeeAdded = false;
 
         private void Raise(object sender, EventArgs e)
         {
@@ -180,11 +182,13 @@ namespace SimpleClinic
                 MessageBox.Show("Employee Information Has Saved Successfully", "Info", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
+                _IsEmployeeAdded = IsSaved;
+
                 _IsPictureChanged = false;
             }
             else 
             {
-                MessageBox.Show(clsGlobal.ErrorMessage, "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed Opreation", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -256,11 +260,13 @@ namespace SimpleClinic
         {
             if(dtpEndDate.Enabled)
             {
-                dtpEndDate.MaxDate = DateTime.Now;
+                
 
                 dtpEndDate.Value = _Employee == null || _Employee.EmployeeID == -1 || !_Employee.EndDate.HasValue?
 
                DateTime.Now : _Employee.EndDate.Value;
+
+                dtpEndDate.MaxDate = DateTime.Now;
 
             }
         }
@@ -270,7 +276,7 @@ namespace SimpleClinic
 
             _DisplayedPersonImage = string.Empty;
 
-            if(_Employee != null && _Employee.EmployeeID > 0)
+            if(_IsEmployeeAdded)
                 
                 EmployeeAdded?.Invoke(this, _Employee);
 

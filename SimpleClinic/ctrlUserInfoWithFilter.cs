@@ -31,6 +31,10 @@ namespace SimpleClinic
         private void comboBoxFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBoxFilterBy.Text = string.Empty;
+
+            _User = new clsUser();
+
+            ctrlUserInfo1.LoadUserInfo(_User);
         }
 
         private void txtBoxFilterBy_KeyPress(object sender, KeyPressEventArgs e)
@@ -57,7 +61,8 @@ namespace SimpleClinic
                 _User = clsUser.GetUserInfoByID(Convert.ToInt32(txtBoxFilterBy.Text), ref clsGlobal.ErrorMessage);
             }else if(comboBoxFilterBy.SelectedIndex == 1)
             {
-                _User = clsUser.GetUserInfoByUserName(txtBoxFilterBy.Text.Trim(), ref clsGlobal.ErrorMessage);
+                _User = clsUser.GetUserInfoByUserName(clsEncryptionDecryption.Encrypt(txtBoxFilterBy.Text.Trim()),
+                    ref clsGlobal.ErrorMessage);
             }else
             {
                 _User = clsUser.GetUserInfoByEmployeeID(Convert.ToInt32(txtBoxFilterBy.Text), ref clsGlobal.ErrorMessage);
@@ -79,8 +84,7 @@ namespace SimpleClinic
 
         private void _LoadUserInfo()
         {
-            if(_User != null)
-                ctrlUserInfo1.LoadUserInfo(_User);
+            ctrlUserInfo1.LoadUserInfo(_User);
         }
         private void btnFind_Click(object sender, EventArgs e)
         {

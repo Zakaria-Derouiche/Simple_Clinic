@@ -62,7 +62,7 @@ namespace SimpleClinic
 
             ctrlPersonInfo1.LoadPersonInfo(Person);
 
-            gBoxFilter.Enabled = false;
+            gBoxFilter.Enabled = _Person == null || _Person.ID < 1;
            
         }
         private void _GetPerson()

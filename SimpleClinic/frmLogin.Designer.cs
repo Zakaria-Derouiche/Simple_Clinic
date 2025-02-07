@@ -72,7 +72,7 @@
             this.txtBoxPassword.Location = new System.Drawing.Point(134, 95);
             this.txtBoxPassword.Name = "txtBoxPassword";
             this.txtBoxPassword.Size = new System.Drawing.Size(216, 27);
-            this.txtBoxPassword.TabIndex = 5;
+            this.txtBoxPassword.TabIndex = 1;
             this.txtBoxPassword.UseSystemPasswordChar = true;
             this.txtBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxPassword_KeyPress);
             // 

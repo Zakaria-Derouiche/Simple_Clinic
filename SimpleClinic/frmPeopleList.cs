@@ -27,6 +27,13 @@ namespace SimpleClinic
 
         private int _TotalPeopleNumber;
 
+        private void _Raise(object sender, clsPerson Person)
+        {
+            _dtPeople = clsPerson.GetSetOfPeopleData(_PageNumber, _RowsNumberPerPage, ref clsGlobal.ErrorMessage);
+
+            dgvPeople.DataSource = _dtPeople;
+
+        }
         public frmPeopleList(Form Sender = null)
         {
             InitializeComponent();
@@ -145,16 +152,22 @@ namespace SimpleClinic
            
             frmAddEditPerson Person = new frmAddEditPerson(-1, this);
 
+            Person.PersonAddedOrUpdated += _Raise;
+
             this.Hide();
 
             Person.ShowDialog();
         }
 
+
         private void updatePersonInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int PersonID = (int)dgvPeople.CurrentRow.Cells[0].Value;
 
+
             frmAddEditPerson Person = new frmAddEditPerson(PersonID, this);
+
+            Person.PersonAddedOrUpdated += _Raise;
 
             this.Hide();
 
@@ -173,6 +186,13 @@ namespace SimpleClinic
             int PersonID = (int)dgvPeople.CurrentRow.Cells[0].Value;
 
             bool IsDeleted = clsPerson.DeletePerson(PersonID, ref clsGlobal.ErrorMessage);
+
+            if(IsDeleted)
+            {
+                _dtPeople = clsPerson.GetSetOfPeopleData(_PageNumber, _RowsNumberPerPage, ref clsGlobal.ErrorMessage);
+
+                dgvPeople.DataSource = _dtPeople;
+            }
 
             _ShowResult(IsDeleted);
         }

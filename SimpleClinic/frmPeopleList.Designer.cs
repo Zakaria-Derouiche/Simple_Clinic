@@ -42,9 +42,9 @@
             this.dgvPeople = new System.Windows.Forms.DataGridView();
             this.cmsPeople = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPersonInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addAPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updatePersonInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteAPersontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePersontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
@@ -177,11 +177,11 @@
             this.cmsPeople.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsPeople.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showPersonInfoToolStripMenuItem,
-            this.addAPersonToolStripMenuItem,
+            this.addPersonToolStripMenuItem,
             this.updatePersonInfoToolStripMenuItem,
-            this.deleteAPersontToolStripMenuItem});
+            this.deletePersontToolStripMenuItem});
             this.cmsPeople.Name = "cmsPatients";
-            this.cmsPeople.Size = new System.Drawing.Size(205, 100);
+            this.cmsPeople.Size = new System.Drawing.Size(211, 128);
             // 
             // showPersonInfoToolStripMenuItem
             // 
@@ -190,12 +190,12 @@
             this.showPersonInfoToolStripMenuItem.Text = "Show Person nfo";
             this.showPersonInfoToolStripMenuItem.Click += new System.EventHandler(this.showPersonInfoToolStripMenuItem_Click);
             // 
-            // addAPersonToolStripMenuItem
+            // addPersonToolStripMenuItem
             // 
-            this.addAPersonToolStripMenuItem.Name = "addAPersonToolStripMenuItem";
-            this.addAPersonToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.addAPersonToolStripMenuItem.Text = "Add Person";
-            this.addAPersonToolStripMenuItem.Click += new System.EventHandler(this.addAPersonToolStripMenuItem_Click);
+            this.addPersonToolStripMenuItem.Name = "addPersonToolStripMenuItem";
+            this.addPersonToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.addPersonToolStripMenuItem.Text = "Add Person";
+            this.addPersonToolStripMenuItem.Click += new System.EventHandler(this.addAPersonToolStripMenuItem_Click);
             // 
             // updatePersonInfoToolStripMenuItem
             // 
@@ -204,12 +204,12 @@
             this.updatePersonInfoToolStripMenuItem.Text = "Update Person Info";
             this.updatePersonInfoToolStripMenuItem.Click += new System.EventHandler(this.updatePersonInfoToolStripMenuItem_Click);
             // 
-            // deleteAPersontToolStripMenuItem
+            // deletePersontToolStripMenuItem
             // 
-            this.deleteAPersontToolStripMenuItem.Name = "deleteAPersontToolStripMenuItem";
-            this.deleteAPersontToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.deleteAPersontToolStripMenuItem.Text = "Delete Person";
-            this.deleteAPersontToolStripMenuItem.Click += new System.EventHandler(this.deleteAPersontToolStripMenuItem_Click);
+            this.deletePersontToolStripMenuItem.Name = "deletePersontToolStripMenuItem";
+            this.deletePersontToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.deletePersontToolStripMenuItem.Text = "Delete Person";
+            this.deletePersontToolStripMenuItem.Click += new System.EventHandler(this.deleteAPersontToolStripMenuItem_Click);
             // 
             // btnClose
             // 
@@ -261,9 +261,9 @@
         private System.Windows.Forms.DataGridView dgvPeople;
         private System.Windows.Forms.ContextMenuStrip cmsPeople;
         private System.Windows.Forms.ToolStripMenuItem showPersonInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addAPersonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addPersonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updatePersonInfoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteAPersontToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletePersontToolStripMenuItem;
         private System.Windows.Forms.Button btnClose;
     }
 }

@@ -23,7 +23,7 @@ namespace SimpleClinic
 
         public event EventHandler<string> UserPermissionsChanged;
 
-        public frmUserPermissions(string UserPermissions, bool ShowMode = false, Form Sender = null)
+        public frmUserPermissions(string UserPermissions, bool ShowMode, Form Sender)
         {
             InitializeComponent();
 
@@ -44,6 +44,11 @@ namespace SimpleClinic
             return Permisssions;
         }
 
+        private void _DefineMode()
+        {
+            if (_Mode)
+                _DisableAllCheckBoxes();
+        }
         private void _DisableAllCheckBoxes()
         {
             checkBoxPeopleCreate.Enabled = false;
@@ -148,12 +153,9 @@ namespace SimpleClinic
             checkBoxAppointmentsOperationsRead.Checked = true;
 
         }
-        private void _DisplayUserPermissions()
+
+        private void _SelectCustomUserPermissions()
         {
-            if (_Mode)
-                _DisableAllCheckBoxes();
-            if(_UserPermissions == "Full Control")
-                _SelectAllCheckBoxes();
             if (_UserPermissions.Contains("People"))
             {
                 string Permissions = _GetPermissionOnTable("People");
@@ -242,6 +244,14 @@ namespace SimpleClinic
                 checkBoxAppointmentsOperationsRead.Checked = Permissions.Contains("Read");
 
             }
+        }
+        private void _DisplayUserPermissions()
+        {
+
+            if (_UserPermissions == "Full Control")
+                _SelectAllCheckBoxes();
+            else
+                _SelectCustomUserPermissions();
 
         }
 
@@ -433,6 +443,8 @@ namespace SimpleClinic
             if(_UserPermissions != string.Empty)
             {
                 _DisplayUserPermissions();
+
+                _DefineMode();
             }
            
         }
