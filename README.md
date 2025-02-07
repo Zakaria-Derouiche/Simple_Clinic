@@ -1,5 +1,5 @@
 "# Simple Clinic Project" 
 
 
-UserName: "Zaki"
+UserName: "Admin"
 Password: "1234"
